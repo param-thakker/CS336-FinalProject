@@ -15,7 +15,7 @@
 		out.print("Logout Successful");
 	%>
 	<form action="login.jsp" method="GET">
-    	<button>Login</button>
+    	<button>Return to Login</button>
 	</form>
 
 

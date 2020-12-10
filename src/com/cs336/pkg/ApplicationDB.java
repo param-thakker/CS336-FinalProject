@@ -13,8 +13,9 @@ public class ApplicationDB {
 	public Connection getConnection(){
 		
 		//Create a connection string
-		String connectionUrl = "jdbc:mysql://projectgroup19cs3362020.cx9k6gtltha8.us-east-2.rds.amazonaws.com:3306/LoginDatabase";
+		String connectionUrl = "jdbc:mysql://projectgroup19cs3362020.cx9k6gtltha8.us-east-2.rds.amazonaws.com:3306/TRAIN";
 		//"jdbc:mysql://cs336db.cobl387whqx9.us-east-2.rds.amazonaws.com:3306/BarBeerDrinkerSample";
+		//String connectionUrl = "jdbc:mysql://projectgroup19cs3362020.cx9k6gtltha8.us-east-2.rds.amazonaws.com:3306/TRAINS";
 		Connection connection = null;
 		
 		try {

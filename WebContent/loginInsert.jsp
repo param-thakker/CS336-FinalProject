@@ -27,16 +27,17 @@
 	//	out.print("Checkpoint 1\n");
 
 		//Make an insert statement for the Sells table:
-		String insert = "INSERT INTO Accounts(username, password, email)"
-				+ "VALUES (?, ?, ?)";
+		String insert = "INSERT INTO Accounts(email, password, username, userType)"
+				+ "VALUES (?, ?, ?, ?)";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
 	//	out.print("Checkpoint 2\n");
 
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-		ps.setString(1, username);
+		ps.setString(1, email);
 		ps.setString(2, password);
-		ps.setString(3, email);
+		ps.setString(3, username);
+		ps.setString(4, "customer");
 		//Run the query against the DB
 	//	out.print("Checkpoint 3\n");
 		ps.executeUpdate();
