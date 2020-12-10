@@ -66,4 +66,5 @@ CREATE TABLE IF NOT EXISTS Accounts(
 				Email varchar(50),
 				Password varchar(50),
                 Username varchar(50),
-                Usertype varchar(20));
+                Usertype varchar(20),
+                primary key(Username));
