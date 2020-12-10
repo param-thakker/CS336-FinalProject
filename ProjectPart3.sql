@@ -46,8 +46,7 @@ CREATE TABLE IF NOT EXISTS Customer(
                 Password varchar(50),
                 First_Name varchar(20),
                 Last_Name varchar(20),
-                Username varchar(20),
-                AccountType varchar(20)
+                Username varchar(20)
 );
 CREATE TABLE IF NOT EXISTS ResPassTransLine(
 				Reservation_Number varchar(20),
@@ -68,3 +67,6 @@ CREATE TABLE IF NOT EXISTS Accounts(
                 Username varchar(50),
                 Usertype varchar(20),
                 primary key(Username));
+         
+);
+
