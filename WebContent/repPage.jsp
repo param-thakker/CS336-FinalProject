@@ -81,7 +81,7 @@
 			String questions = "SELECT * FROM Questions";
 			
 			//Run the query against the database.
-			result = stmt.executeQuery(str);
+			result = stmt.executeQuery(questions);
 
 			//Make an HTML table to show the results in:
 			out.print("<table>");

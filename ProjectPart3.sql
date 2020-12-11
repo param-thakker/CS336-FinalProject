@@ -69,6 +69,10 @@ CREATE TABLE IF NOT EXISTS Accounts(
                 Username varchar(50),
                 Usertype varchar(20),
                 primary key(Username));
-         
+                
+CREATE TABLE IF NOT EXISTS Questions(
+				Question varchar(50),
+                Answer varchar(50),
+                primary key(Question));         
 );
 
