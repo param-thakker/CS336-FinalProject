@@ -23,7 +23,7 @@ SALES REPORT
 RESERVATIONS
 <br>
 <br>
-<form method="get" action="show.jsp">
+<form method="get" action="showCustomerSearch.jsp">
 
  Origin: <input type="text" name="originStation" placeholder="New Brunswick"/> 
    <br>
