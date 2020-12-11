@@ -62,9 +62,13 @@ CREATE TABLE IF NOT EXISTS ResPassTransLine(
                 foreign key (Username) references Customer(Username)
 );
 CREATE TABLE IF NOT EXISTS Accounts(
+				First_Name varchar(50),
+                Last_Name varchar(50),
 				Email varchar(50),
 				Password varchar(50),
                 Username varchar(50),
                 Usertype varchar(20),
-                primary key(Username)         
+                primary key(Username));
+         
 );
+
