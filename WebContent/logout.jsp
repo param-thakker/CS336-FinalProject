@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%
-		session.setAttribute("user", false);
+		session.setAttribute("user", null);
 		out.print("Logout Successful");
 	%>
 	<form action="login.jsp" method="GET">

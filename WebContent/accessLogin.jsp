@@ -24,11 +24,10 @@
 			//Get the combobox from the index.jsp
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			Boolean isLoggedIn = (Boolean) session.getAttribute("user");
-			isLoggedIn = isLoggedIn != null && isLoggedIn;
-			if (isLoggedIn) {
+			String loggedInUser = (String) session.getAttribute("user");
+			if (loggedInUser != null) {
 				out.print("You are logged in!");
-			} else if (!isLoggedIn && username == null) {
+			} else if (loggedInUser != null && username == null) {
 				response.sendRedirect(request.getContextPath() + "/login.jsp");
 			} else {
 				//Make a SELECT query from the sells table with the price range specified by the 'price' parameter at the index.jsp
@@ -45,7 +44,7 @@
 							isIn=result.getString("userType");
 				isIn="wjiaefoj";
 				if (!(isIn.equals(""))){
-					session.setAttribute("user", true);
+					session.setAttribute("user", username);
 					out.print("Login Successful");
 					/*if (isIn.equals("admin"))
 						response.sendRedirect(request.getContextPath() + "/adminPage.jsp");
