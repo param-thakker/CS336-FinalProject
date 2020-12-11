@@ -5,84 +5,48 @@
     
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	<%
-		session.setAttribute("user", true);
-		out.print("THIS IS THE Customer PAGE");
-	%>
-	<%
-		List<String> list = new ArrayList<String>();
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Admin Home</title>
+	</head>
+<body style="background-color:powderblue;">
 
-		try {
+							  
+<br>
 
-			//Get the database connection
-			ApplicationDB db = new ApplicationDB();	
-			Connection con = db.getConnection();	
-			
-			//Create a SQL statement
-			Statement stmt = con.createStatement();
-			//Get the combobox from the index.jsp
-		//	String entity = request.getParameter("price");
-			//Make a SELECT query from the sells table with the price range specified by the 'price' parameter at the index.jsp
-			String str = "SELECT * FROM Accounts";
-			//Run the query against the database.
-			ResultSet result = stmt.executeQuery(str);
 
-			//Make an HTML table to show the results in:
-			out.print("<table>");
+SALES REPORT
+<br>
+<br>
 
-			//make a row
-			out.print("<tr>");
-			//make a column
-			out.print("<td>");
-			//print out column header
-			out.print("bar");
-			out.print("</td>");
-			//make a column
-			out.print("<td>");
-			out.print("beer");
-			out.print("</td>");
-			//make a column
-			out.print("<td>");
-			out.print("price");
-			out.print("</td>");
-			out.print("</tr>");
-
-			//parse out the results
-			while (result.next()) {
-				//make a row
-				out.print("<tr>");
-				//make a column
-				out.print("<td>");
-				//Print out current bar name:
-				out.print(result.getString("username"));
-				out.print("</td>");
-				out.print("<td>");
-				//Print out current beer name:
-				out.print(result.getString("password"));
-				out.print("</td>");
-				out.print("<td>");
-				//Print out current price
-				out.print(result.getString("email"));
-				out.print("</td>");
-				out.print("</tr>");
-
-			}
-			out.print("</table>");
-
-			//close the connection.
-			con.close();
-
-		} catch (Exception e) {
-		}
-	%>
 	
-	<form action="logout.jsp" method="GET">
-    	<button>Logout</button>
-	</form>
+RESERVATIONS
+<br>
+<br>
+<form method="get" action="show.jsp">
+
+ Origin: <input type="text" name="originStation" placeholder="New Brunswick"/> 
+   <br>
+  Destination: <input type="text" name="destinationStation" placeholder="Matawan"/> 
+  <br>
+  Date of Travel (MM/DD/YYYY): <input type="text" name="dateOfTravel" placeholder="12/22/2020"/> 
+  <br>
+  <input type="submit" value="Search" />
+</form>
+<br>
+
+	
+QUESTIONS/FEEDBACK
+<br>
+<br>
+<form method="get" action="insertQuestion.jsp">
+
+ Enter a question: <input type="text" name="question" placeholder="How do I make a reservation?"/> 
+   <br>
+  <br>
+  <input type="submit" value="Submit" />
+</form>
+<br>
+
 </body>
 </html>
