@@ -42,31 +42,29 @@ CREATE TABLE IF NOT EXISTS TrainPartOf(
                 foreign key (Transit_Line_Name) references TransitLine(Transit_Line_Name)
 );
 CREATE TABLE IF NOT EXISTS Customer(
-				Email varchar(50) primary key,
+				Email varchar(50),
                 Password varchar(50),
                 First_Name varchar(20),
                 Last_Name varchar(20),
-                Username varchar(20)
+                Username varchar(20) primary key
 );
 CREATE TABLE IF NOT EXISTS ResPassTransLine(
 				Reservation_Number varchar(20),
                 Reservation_Date date,
                 Fare float,
-				Email varchar(50),
+				Username varchar(20),
                 Transit_Line_Name varchar(20),
                 Origin varchar(20),
                 Destination varchar(20),
                 DepartureTime datetime,
                 primary key(Reservation_Number),
                 foreign key (Transit_Line_Name) references TransitLine(Transit_Line_Name),
-                foreign key (Email) references Customer(Email)
+                foreign key (Username) references Customer(Username)
 );
 CREATE TABLE IF NOT EXISTS Accounts(
 				Email varchar(50),
 				Password varchar(50),
                 Username varchar(50),
                 Usertype varchar(20),
-                primary key(Username));
-         
+                primary key(Username)         
 );
-
