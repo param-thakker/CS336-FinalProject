@@ -29,11 +29,28 @@
 		//	String entity = request.getParameter("price");
 			//Make a SELECT query from the sells table with the price range specified by the 'price' parameter at the index.jsp
 			String str = "SELECT * FROM Accounts";
+			
+			
+			
+			String ResbyCust = "SELECT email, count(*) FROM ResPassTransLine GROUP BY email";
+			String ResbyTrain = "SELECT Transit_Line_Name line, count(*) FROM ResPassTransLine GROUP BY Transit_Line_Name";
+
+			String RevbyCust = "SELECT email, sum(Fare) FROM ResPassTransLine GROUP BY email";
+			String RevbyTrain = "SELECT Transit_Line_Name line, sum(Fare) FROM ResPassTransLine GROUP BY Transit_Line_Name";
+
+			
+			
+			String bestCust = "SELECT email, sum(Fare) FROM ResPassTransLine GROUP BY email LIMIT 1";
+			String topFive = "SELECT Transit_Line_Name line, count(*) FROM ResPassTransLine GROUP BY Transit_Line_Name LIMIT 5";
+			//sort by month according to o.g. doc
+
+
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 
+			
 			//Make an HTML table to show the results in:
-			out.print("<table>");
+			/*out.print("<table>");
 
 			//make a row
 			out.print("<tr>");
@@ -81,7 +98,7 @@
 				out.print("</tr>");
 
 			}
-			out.print("</table>");
+			out.print("</table>");*/
 
 			//close the connection.
 			con.close();
