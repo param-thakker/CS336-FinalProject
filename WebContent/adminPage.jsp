@@ -11,9 +11,7 @@
 	</head>
 <body style="background-color:powderblue;">
 
-
-
-									  
+							  
 <br>
 
 
@@ -47,25 +45,16 @@ See sales report per month:
 <br>
 <br>
 
- <!-- Show html form to i) display something, ii) choose an action via a 
-  | radio button -->
-<!-- forms are used to collect user input 
-	The default method when submitting form data is GET.
-	However, when GET is used, the submitted form data will be visible in the page address field-->
 	
 RESERVATIONS
 <br>
 <br>
 <form method="get" action="show.jsp">
-    <!-- note the show.jsp will be invoked when the choice is made -->
-	<!-- The next lines give HTML for radio buttons being displayed -->
+
  See reservations by transit line: <input type="text" name="reservationLine" placeholder="transit line"/> <input type="submit" value="Search" />
    <br>
   See reservations by name: <input type="text" name="reservationName" placeholder="customer name"/> <input type="submit" value="Search" />
  
-  
-    <!-- when the radio for bars is chosen, then 'command' will have value 
-     | 'bars', in the show.jsp file, when you access request.parameters -->
   <br>
   
 </form>
@@ -78,8 +67,7 @@ REVENUE
 	 Calculate revenue per transit line: <input type="text" name="revenueLine" placeholder="transit line"/> <input type="submit" value="Calculate" />
      <br>
      Calculate revenue per customer: <input type="text" name="revenueCustomer" placeholder="customer name"/> <input type="submit" value="Calculate" />
-    <!-- when the radio for bars is chosen, then 'command' will have value 
-     | 'bars', in the show.jsp file, when you access request.parameters -->
+ 
   <br>
 	</form>
 <br>
@@ -105,8 +93,6 @@ Click to see the 5 Most Active Transit Lines: <input type="submit" name="fiveMos
 </form>
 <br>
 <br>
-
-
 
 </body>
 </html>
