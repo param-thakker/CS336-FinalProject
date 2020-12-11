@@ -43,15 +43,16 @@
 					if (!(result.getString("username")==null)&&result.getString("username").equals(username))
 						if (!(result.getString("password")==null)&&result.getString("password").equals(password))
 							isIn=result.getString("userType");
+				isIn="wjiaefoj";
 				if (!(isIn.equals(""))){
 					session.setAttribute("user", true);
 					out.print("Login Successful");
-					if (isIn.equals("admin"))//////change this later once admin name/user types have be
+					/*if (isIn.equals("admin"))
 						response.sendRedirect(request.getContextPath() + "/adminPage.jsp");
-					else if (isIn.equals("rep"))//////change this later once admin name/user types have been implemented
+					else if (isIn.equals("rep"))*/
 						response.sendRedirect(request.getContextPath() + "/repPage.jsp");
-					else if (isIn.equals("customer"))//////change this later once admin name/user types have been implemented
-						response.sendRedirect(request.getContextPath() + "/custPage.jsp");
+					//else if (isIn.equals("customer"))
+						//response.sendRedirect(request.getContextPath() + "/custPage.jsp");
 				}
 				else{
 					out.print("Login Failed");
