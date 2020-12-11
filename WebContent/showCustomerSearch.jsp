@@ -25,7 +25,7 @@
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
 			String str = "SELECT * FROM ResPassTransLine WHERE " + "...";
 			//Run the query against the database.
-			// ResultSet result = stmt.executeQuery(str);
+			ResultSet result = stmt.executeQuery(str);
 		%>
 			
 		<!--  Make an HTML table to show the results in: -->
