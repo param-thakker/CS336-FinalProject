@@ -21,9 +21,9 @@
 			String origin = request.getParameter("originStation");
 			String destination = request.getParameter("destinationStation");
 			String date = request.getParameter("dateOfTravel");
-			String sortOrder = request.getParameter("sort");
+			String sortOrder = request.getParameter("sortBy");
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-			String str = "SELECT * FROM ResPassTransLine WHERE " + "...";
+			String str = "SELECT * FROM TransitLine";
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 		%>
@@ -42,29 +42,24 @@
 		  <br>
 			<input type="submit" value="Sort">
 		</form>
-<%-- 	<table>
+		
+		Pick a train: 
+		<form method="get" action="showCustomerSearch.jsp">
+			  	<table>
 		<tr>    
 			<td>Name</td>
-			<td>
-				<%if (entity.equals("beers"))
-					out.print("Manufacturer");
-				else
-					out.print("Address");
-				%>
-			</td>
+			<td>Departure Time</td>
+			<td>Price</td>
+			<td>Time</td>
 		</tr>
 			<%
 			//parse out the results
 			while (result.next()) { %>
 				<tr>    
-					<td><%= result.getString("name") %></td>
-					<td>
-						<% if (entity.equals("beers")){ %>
-							<%= result.getString("manf")%>
-						<% }else{ %>
-							<%= result.getString("addr")%>
-						<% } %>
-					</td>
+					<td><%= result.getString("Transit_Line_Name") %></td>
+					<td><%= result.getString("DepartureTime") %></td>
+					<td><%= result.getString("Fare") %></td>
+					<td><%= result.getString("TravelTime") %></td>
 				</tr>
 				
 
@@ -72,7 +67,8 @@
 			//close the connection.
 			db.closeConnection(con);
 			%>
-		</table> --%>
+		</table>
+		</form>
 
 			
 		<%} catch (Exception e) {
