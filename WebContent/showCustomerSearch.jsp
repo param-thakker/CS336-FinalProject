@@ -44,7 +44,7 @@
 		</form>
 		
 		Pick a train: 
-		<form method="get" action="showCustomerSearch.jsp">
+		<form method="get" action="makeReservation.jsp">
 		<table>
 		<tr>    
 			<td>Select</td>
