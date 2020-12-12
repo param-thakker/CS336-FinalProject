@@ -31,9 +31,9 @@
 		<!--  Make an HTML table to show the results in: -->
 		Sort By: 
 		<form method="get" action="showCustomerSearch.jsp">
-			  <input type="hidden" name="originStation" value="${origin}">
-			  <input type="hidden" name="destinationStation" value="${destination}">
-			  <input type="hidden" name="dateOfTravel" value="${date}">
+			  <input type="hidden" name="originStation" value="<%= origin %>">
+			  <input type="hidden" name="destinationStation" value="<%= destination %>">
+			  <input type="hidden" name="dateOfTravel" value="<%= date %>">
 		  <input type="radio" name="sortBy" selected="true" value="arrival"/>Arrival Time
 		  <br>
 		  <input type="radio" name="sortBy" value="departure"/>Departure Time
@@ -45,8 +45,9 @@
 		
 		Pick a train: 
 		<form method="get" action="showCustomerSearch.jsp">
-			  	<table>
+		<table>
 		<tr>    
+			<td>Select</td>
 			<td>Name</td>
 			<td>Departure Time</td>
 			<td>Price</td>
@@ -56,6 +57,7 @@
 			//parse out the results
 			while (result.next()) { %>
 				<tr>    
+				<td><input type="radio" name="selectedTrip" value="<%= result.getString("Transit_Line_Name") %>"/></td>
 					<td><%= result.getString("Transit_Line_Name") %></td>
 					<td><%= result.getString("DepartureTime") %></td>
 					<td><%= result.getString("Fare") %></td>
@@ -68,6 +70,21 @@
 			db.closeConnection(con);
 			%>
 		</table>
+		Check if you qualify for a discount:
+		<br>
+		<input type="radio" name="discounted" selected="true" value="true"/>Old Person (>65)
+		  <br>
+		  <input type="radio" name="discounted" value="true"/>Child (<12)
+		  <br>
+		  <input type="radio" name="discounted" value="false"/>Adult
+		  <br>
+		  Trip Type:
+		<br>
+		  <input type="radio" name="tripType" value="round"/>Round Trip
+		  <br>
+		  <input type="radio" name="tripType" value="oneway"/>One Way
+		  <br>
+		  			<input type="submit" value="Make a reservation">
 		</form>
 
 			
