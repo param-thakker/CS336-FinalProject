@@ -24,7 +24,11 @@
 			String sortOrder = request.getParameter("sortBy");
 			System.out.println(sortOrder);
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-			String str = "SELECT * FROM TransitLine ORDER BY "+sortOrder;
+			String str;
+			if(origin != null && destination != null && date !=null)
+				str = "SELECT * FROM TransitLine WHERE Origin='"+origin+"' AND Destination='"+destination+"' AND DepartureTime LIKE '"+date+"%' ORDER BY "+sortOrder;
+			else 
+				str = "SELECT * FROM TransitLine ORDER BY "+sortOrder;
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 		%>
@@ -51,6 +55,7 @@
 			<td>Select</td>
 			<td>Name</td>
 			<td>Departure Time</td>
+			<td>Arrival Time</td>
 			<td>Price</td>
 			<td>Time</td>
 		</tr>
@@ -61,6 +66,7 @@
 				<td><input type="radio" name="selectedTrip" value="<%= result.getString("Transit_Line_Name") %>"/></td>
 					<td><%= result.getString("Transit_Line_Name") %></td>
 					<td><%= result.getString("DepartureTime") %></td>
+					<td><%= result.getString("ArrivalTime") %></td>
 					<td><%= result.getString("Fare") %></td>
 					<td><%= result.getString("TravelTime") %></td>
 				</tr>
