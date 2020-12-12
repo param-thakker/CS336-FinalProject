@@ -27,7 +27,6 @@
 			ResultSet result = stmt.executeQuery(str);
 			
 			//close the connection.
-			db.closeConnection(con);
 			
 			out.print("<table>");
 
@@ -71,6 +70,7 @@
 			out.print("</table>");
 
 			db.closeConnection(con);
+			con.close();
 
 		%>
 			

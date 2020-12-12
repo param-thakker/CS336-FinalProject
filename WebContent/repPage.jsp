@@ -91,16 +91,13 @@
 			//make a column
 			out.print("<td>");
 			//print out column header
-			out.print("bar");
+			out.print("Question");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("beer");
+			out.print("Answer");
 			out.print("</td>");
 			//make a column
-			out.print("<td>");
-			out.print("price");
-			out.print("</td>");
 			out.print("</tr>");
 
 			//parse out the results
@@ -115,10 +112,6 @@
 				out.print("<td>");
 				//Print out current beer name:
 				out.print(result.getString("Answer"));
-				out.print("</td>");
-				out.print("<td>");
-				//Print out current price
-				out.print(result.getString("???"));
 				out.print("</td>");
 				out.print("</tr>");
 
@@ -158,15 +151,11 @@
 	<br>
 	
 	
-	<form method="post" action="answerQuestionRep.jsp">
-	<br>
-		Q: <input type="text" name="question">
-		<br>
-		A: <input type="text" name="answer">
-		<br>
-	<input type="submit" value="Commit">
+	
+	<form action="showQuestionRep.jsp" method="GET">
+    	<button>Show Customer Questions</button>
 	</form>
-	<br>
+	
 
 	<form method="post" action="showTrainsRep.jsp">
 	  Produce list of all train schedules containing
