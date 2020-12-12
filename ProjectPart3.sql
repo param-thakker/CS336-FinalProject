@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS TrainPartOf(
 CREATE TABLE IF NOT EXISTS Accounts(
 				Email varchar(50),
 				Password varchar(50),
+                LastName varchar(20),
+                FirstName varchar(20),
                 Username varchar(50),
                 Usertype varchar(20),
                 primary key(Username)         
