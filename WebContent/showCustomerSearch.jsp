@@ -23,10 +23,8 @@
 			String date = request.getParameter("dateOfTravel");
 			String sortOrder = request.getParameter("sortBy");
 			System.out.println(sortOrder);
-			if(sortOrder==null)
-				sortOrder="Fare";
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-			String str = "SELECT * FROM TransitLine GROUP BY "+sortOrder;
+			String str = "SELECT * FROM TransitLine ORDER BY "+sortOrder;
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 		%>
