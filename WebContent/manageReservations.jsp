@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.cs336.pkg.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
@@ -14,51 +15,42 @@
 			//Get the database connection
 			ApplicationDB db = new ApplicationDB();	
 			Connection con = db.getConnection();		
-
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
-			//Get the selected radio button from the index.jsp
-			String origin = request.getParameter("originStation");
-			String destination = request.getParameter("destinationStation");
-			String date = request.getParameter("dateOfTravel");
-			String sortOrder = request.getParameter("sortBy");
-			System.out.println(sortOrder);
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-			String str;
-			if(origin != null && destination != null && date !=null)
-				str = "SELECT * FROM TransitLine WHERE Origin='"+origin+"' AND Destination='"+destination+"' AND DepartureTime LIKE '"+date+"%' ORDER BY "+sortOrder;
-			else 
-				str = "SELECT * FROM TransitLine ORDER BY "+sortOrder;
+			String Current = (new Date()).toString();
+			String loggedInUser = (String) session.getAttribute("user");
+			loggedInUser="Username";
+			String str = "SELECT * FROM ResPassTransLine WHERE Username = '"+loggedInUser+"';";
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 		%>
-		
 		
 		Select a reservation to delete: 
 		<form method="get" action="deleteReservation.jsp">
 		<table>
 		<tr>    
 			<td>Select</td>
+			<td>Reservation Number</td>
+			<td>Reservation Date</td>
 			<td>Name</td>
 			<td>Origin</td>
 			<td>Destination</td>
 			<td>Departure Time</td>
-			<td>Arrival Time</td>
 			<td>Price</td>
-			<td>Time</td>
 		</tr>
 			<%
 			//parse out the results
 			while (result.next()) { %>
 				<tr>    
-				<td><input type="radio" name="tripToDelete" value="<%= result.getString("Transit_Line_Name") %>"/></td>
+				<td><input type="radio" name="tripToDelete" value="<%= result.getString("Reservation_Number") %>"/></td>
+					<td><%= result.getString("Reservation_Number") %></td>
+					<td><%= result.getString("Reservation_Date") %></td>					
 					<td><%= result.getString("Transit_Line_Name") %></td>
 					<td><%= result.getString("Origin") %></td>
 					<td><%= result.getString("Destination") %></td>
 					<td><%= result.getString("DepartureTime") %></td>
-					<td><%= result.getString("ArrivalTime") %></td>
 					<td><%= result.getString("Fare") %></td>
-					<td><%= result.getString("TravelTime") %></td>
 				</tr>
 				
 
