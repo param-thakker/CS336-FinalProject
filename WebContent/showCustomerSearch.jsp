@@ -22,8 +22,11 @@
 			String destination = request.getParameter("destinationStation");
 			String date = request.getParameter("dateOfTravel");
 			String sortOrder = request.getParameter("sortBy");
+			System.out.println(sortOrder);
+			if(sortOrder==null)
+				sortOrder="Fare";
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-			String str = "SELECT * FROM TransitLine";
+			String str = "SELECT * FROM TransitLine GROUP BY "+sortOrder;
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 		%>
@@ -34,11 +37,11 @@
 			  <input type="hidden" name="originStation" value="<%= origin %>">
 			  <input type="hidden" name="destinationStation" value="<%= destination %>">
 			  <input type="hidden" name="dateOfTravel" value="<%= date %>">
-		  <input type="radio" name="sortBy" selected="true" value="arrival"/>Arrival Time
+		  <input type="radio" name="sortBy" selected="true" value="ArrivalTime"/>Arrival Time
 		  <br>
-		  <input type="radio" name="sortBy" value="departure"/>Departure Time
+		  <input type="radio" name="sortBy" value="DepartureTime"/>Departure Time
 		  <br>
-		  <input type="radio" name="sortBy" value="price"/>Price
+		  <input type="radio" name="sortBy" value="Fare"/>Price
 		  <br>
 			<input type="submit" value="Sort">
 		</form>
