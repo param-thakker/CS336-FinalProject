@@ -20,8 +20,8 @@ CREATE TABLE IF NOT EXISTS TransitLine(
 				Transit_Line_Name varchar(20) primary key,
                 Origin varchar(20),
                 Destination varchar(20),
+				DepartureTime datetime,
                 ArrivalTime datetime,
-                DepartureTime datetime,
                 Train_Number int,
                 Fare float,
                 TravelTime int
@@ -30,8 +30,8 @@ CREATE TABLE IF NOT EXISTS hasStop(
 				Transit_Line_Name varchar(20),
                 StationID int,
                 Fare float,
-                Arrival datetime,
                 Departure datetime,
+                Arrival datetime,
                 primary key (Transit_Line_Name, StationID),
 				foreign key (Transit_Line_Name) references TransitLine(Transit_Line_Name),
                 foreign key (StationID) references Station(StationID)
@@ -74,5 +74,4 @@ CREATE TABLE IF NOT EXISTS Questions(
 				Question varchar(50),
                 Answer varchar(50),
                 primary key(Question));         
-);
 
