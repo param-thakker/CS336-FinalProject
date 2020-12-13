@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS ResPassTransLine(
                 Origin varchar(20),
                 Destination varchar(20),
                 DepartureTime datetime,
-                primary key(Reservation_Number),
+                primary key(Reservation_Number),	
                 foreign key (Transit_Line_Name) references TransitLine(Transit_Line_Name),
                 foreign key (Username) references Customer(Username)
 );

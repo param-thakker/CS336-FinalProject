@@ -12,7 +12,6 @@
 <body>
 	<%
 		session.setAttribute("user", true);
-		out.print("THIS IS THE REP PAGE");
 	%>
 	<%
 		List<String> list = new ArrayList<String>();
@@ -28,11 +27,9 @@
 			//Get the combobox from the index.jsp
 		//	String entity = request.getParameter("price");
 			//Make a SELECT query from the sells table with the price range specified by the 'price' parameter at the index.jsp
-			String str = "SELECT * FROM Station";
 			String getTrainSchedule = "SELECT * FROM TransitLine";
 			
-			//Run the query against the database.
-			ResultSet result = stmt.executeQuery(str);
+			ResultSet result = stmt.executeQuery(getTrainSchedule);
 
 			//Make an HTML table to show the results in:
 			out.print("<table>");
@@ -42,18 +39,30 @@
 			//make a column
 			out.print("<td>");
 			//print out column header
-			out.print("bar");
+			out.print("Transit_Line_Name");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("beer");
+			out.print("Origin");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("price");
+			out.print("Destination");
 			out.print("</td>");
 			out.print("<td>");
-			out.print("city");
+			out.print("ArrivalTime");
+			out.print("</td>");
+			out.print("<td>");
+			out.print("DepartureTime");
+			out.print("</td>");
+			out.print("<td>");
+			out.print("Train_Number");
+			out.print("</td>");
+			out.print("<td>");
+			out.print("Fare");
+			out.print("</td>");
+			out.print("<td>");
+			out.print("TravelTime");
 			out.print("</td>");
 			out.print("</tr>");
 
@@ -64,21 +73,33 @@
 				//make a column
 				out.print("<td>");
 				//Print out current bar name:
-				out.print(result.getString("StationId"));
+				out.print(result.getString("Transit_Line_Name"));
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current beer name:
-				out.print(result.getString("StationName"));
+				out.print(result.getString("Origin"));
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current price
-				out.print(result.getString("State"));
+				out.print(result.getString("Destination"));
+				out.print("</td>");
+				out.print("<td>");
+				out.print(result.getTimestamp("ArrivalTime"));
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current price
-				out.print(result.getString("City"));
+				out.print(result.getTimestamp("DepartureTime"));
 				out.print("</td>");
-
+				out.print("<td>");
+				out.print(result.getInt("Train_Number"));
+				out.print("</td>");
+				out.print("<td>");
+				out.print(result.getFloat("Fare"));
+				out.print("</td>");
+				out.print("<td>");
+				out.print(result.getInt("TravelTime"));
+				out.print("</td>");
+				
 				out.print("</tr>");
 
 			}
@@ -94,41 +115,36 @@
 		}
 	%>
 	<br>
-	
-	<form action="showTrainLine.jsp" method="GET">
-    	<button>Edit Train Schedules</button>
-	</form>
-	
-	
 		<br>
-	
-	<form action="showQuestionRep.jsp" method="GET">
-    	<button>Show Customer Questions</button>
+	<form method="post" action="editLineRep.jsp">
+			  <input type="radio" name="command" value="update"/>Update
+			  <br>
+			  <input type="radio" name="command" value="add"/>Add (only TrainLine parameter is needed)
+			  <br>
+			  
+		  <input type="radio" name="command" value="delete"/>Delete (only TrainLine parameter is needed)
+		    <!-- when the radio for bars is chosen, then 'command' will have value 
+		     | 'bars', in the show.jsp file, when you access request.parameters -->
+		  <br>
+		  			  <input type="radio" name="command" value="addStops"/>Add Stops to (only TrainLine parameter is needed)
+			  <br>
+	<table>
+	<tr>
+	<td>TrainLine</td><td><input type="text" name="trainline"></td>
+	</tr>
+		<tr>
+	<td>Parameter</td><td><input type="text" name="param"></td>
+	</tr>
+	<tr>
+	<td>Value</td><td><input type="text" name="value"></td>
+	</tr>
+	</table>
+	<input type="submit" value="Commit">
 	</form>
-	
+	<br>
 
-	<form method="post" action="showTrainsRep.jsp">
-	  Produce list of all train schedules containing
-    <br>
-	Station: <input type="text" name="station">
-    <br>
-	<input type="submit" value="Commit">
-	</form>
-	<br>
 	
-	<form method="post" action="showCustsRep.jsp">
-		  Produce list of all customers for reservations on
-	  <br>
-		TransitLine: <input type="text" name="TL">
-	  <br>
-		Date: <input type="text" name="date">		
-		<br>		
-	<input type="submit" value="Commit">
-	</form>
-	<br>
-	
-	<form action="logout.jsp" method="GET">
-    	<button>Logout</button>
-	</form>
+	<button type="button" name="back" onclick="history.back()"> Back </button>
+
 </body>
 </html>
