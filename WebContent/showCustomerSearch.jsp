@@ -79,7 +79,7 @@
 		</table>
 		Check if you qualify for a discount:
 		<br>
-		<input type="radio" name="discounted" selected="true" value="true"/>Old Person (>65)
+		<input type="radio" name="discounted" selected="true" value="true"/>Senior (>65)
 		  <br>
 		  <input type="radio" name="discounted" value="true"/>Child (<12)
 		  <br>
