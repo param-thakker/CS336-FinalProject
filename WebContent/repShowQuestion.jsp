@@ -73,7 +73,7 @@
 	}
 %>
 
-	<form method="post" action="answerQuestionRep.jsp">
+	<form method="post" action="repAnswerQuestion.jsp">
 	<br>
 		Q: <input type="text" name="question">
 		<br>

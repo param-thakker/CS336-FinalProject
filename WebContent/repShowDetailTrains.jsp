@@ -12,7 +12,6 @@
 <body>
 	<%
 		session.setAttribute("user", true);
-		out.print("THIS IS THE REP PAGE");
 	%>
 	<%
 		List<String> list = new ArrayList<String>();
@@ -26,13 +25,13 @@
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 			//Get the combobox from the index.jsp
-		//	String entity = request.getParameter("price");
+			String trainLine = request.getParameter("trainline");
 			//Make a SELECT query from the sells table with the price range specified by the 'price' parameter at the index.jsp
-			String str = "SELECT * FROM Station";
-			String getTrainSchedule = "SELECT * FROM TransitLine";
+
+			String getTrainSchedule = "SELECT s.StationID id, s.StationName name, h.Fare fare, h.Arrival arr, h.Departure dep " +
+					"FROM hasStop h, Station s WHERE Transit_Line_Name = '"+trainLine+"' and s.StationID = h.StationID ORDER BY arr ASC";
 			
-			//Run the query against the database.
-			ResultSet result = stmt.executeQuery(str);
+			ResultSet result = stmt.executeQuery(getTrainSchedule);
 
 			//Make an HTML table to show the results in:
 			out.print("<table>");
@@ -41,20 +40,27 @@
 			out.print("<tr>");
 			//make a column
 			out.print("<td>");
+			out.print("stationID");
+			out.print("</td>");
+			out.print("<td>");
 			//print out column header
-			out.print("bar");
+			out.print("nameStop");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("beer");
+			out.print("Fare");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("price");
+			out.print("ArrivalTime");
 			out.print("</td>");
+			
 			out.print("<td>");
-			out.print("city");
+			out.print("DepartureTime");
 			out.print("</td>");
+			
+			out.print("<td>");
+
 			out.print("</tr>");
 
 			//parse out the results
@@ -63,22 +69,25 @@
 				out.print("<tr>");
 				//make a column
 				out.print("<td>");
+				out.print(result.getString("id"));
+				out.print("</td>");
+				out.print("<td>");
 				//Print out current bar name:
-				out.print(result.getString("StationId"));
+				out.print(result.getString("name"));
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current beer name:
-				out.print(result.getString("StationName"));
+				out.print(result.getFloat("fare"));
+				out.print("</td>");
+				
+				out.print("<td>");
+				out.print(result.getTimestamp("arr"));
 				out.print("</td>");
 				out.print("<td>");
-				//Print out current price
-				out.print(result.getString("State"));
+				out.print(result.getTimestamp("dep"));
 				out.print("</td>");
-				out.print("<td>");
-				//Print out current price
-				out.print(result.getString("City"));
-				out.print("</td>");
-
+				
+				
 				out.print("</tr>");
 
 			}
@@ -93,42 +102,8 @@
 		} catch (Exception e) {
 		}
 	%>
-	<br>
 	
-	<form action="repShowTrainLine.jsp" method="GET">
-    	<button>Edit Train Schedules</button>
-	</form>
-	
-	
-		<br>
-	
-	<form action="repShowQuestion.jsp" method="GET">
-    	<button>Show Customer Questions</button>
-	</form>
-	
+	<button type="button" name="back" onclick="history.back()"> Back </button>
 
-	<form method="post" action="repShowTrains.jsp">
-	  Produce list of all train schedules containing
-    <br>
-	Station: <input type="text" name="station">
-    <br>
-	<input type="submit" value="Commit">
-	</form>
-	<br>
-	
-	<form method="post" action="repShowCusts.jsp">
-		  Produce list of all customers for reservations on
-	  <br>
-		TransitLine: <input type="text" name="TL">
-	  <br>
-		Date: <input type="text" name="date">		
-		<br>		
-	<input type="submit" value="Commit">
-	</form>
-	<br>
-	
-	<form action="logout.jsp" method="GET">
-    	<button>Logout</button>
-	</form>
 </body>
 </html>

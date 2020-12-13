@@ -22,7 +22,8 @@
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
 			String station = request.getParameter("station");
 
-			String str = "SELECT Transit_Line_Name FROM hasStop h, Station s WHERE s.stationName = " + station + " and s.StationID = h.StationID";
+			String str = "SELECT h.Transit_Line_Name transitline, h.Departure dep, h.Arrival arr"
+						+ " FROM hasStop h, Station s WHERE s.stationName = '" + station + "' and s.StationID = h.StationID";
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 			
@@ -35,15 +36,15 @@
 			//make a column
 			out.print("<td>");
 			//print out column header
-			out.print("username");
+			out.print("TL");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("beer");
+			out.print("Arrival Time");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("price");
+			out.print("Departure Time");
 			out.print("</td>");
 			out.print("</tr>");
 
@@ -54,15 +55,15 @@
 				//make a column
 				out.print("<td>");
 				//Print out current bar name:
-				out.print(result.getString("Transit_Line_Name"));
+				out.print(result.getString("transitline"));
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current beer name:
-				out.print(result.getString("password"));
+				out.print(result.getString("arr"));
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current price
-				out.print(result.getString("email"));
+				out.print(result.getString("dep"));
 				out.print("</td>");
 				out.print("</tr>");
 
@@ -77,6 +78,16 @@
 		<%} catch (Exception e) {
 			out.print(e);
 		}%>
+	
+	<form method="post" action="repShowDetailTrains.jsp">
+	<br>
+		More details on TrainLine: <input type="text" name="trainline">
+		<br>
+	<input type="submit" value="Commit">
+	</form>
+	<br>
+	
+	<button type="button" name="back" onclick="history.back()"> Back </button>
 	
 
 	</body>
