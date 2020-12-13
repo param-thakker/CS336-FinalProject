@@ -25,10 +25,10 @@
 			System.out.println(sortOrder);
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
 			String str;
-			if(origin != null && destination != null && date !=null)
+			if(sortOrder != null)
 				str = "SELECT * FROM TransitLine WHERE Origin='"+origin+"' AND Destination='"+destination+"' AND DepartureTime LIKE '"+date+"%' ORDER BY "+sortOrder;
 			else 
-				str = "SELECT * FROM TransitLine ORDER BY "+sortOrder;
+				str = "SELECT * FROM TransitLine WHERE Origin='"+origin+"' AND Destination='"+destination+"' AND DepartureTime LIKE '"+date+"%'";
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 		%>
