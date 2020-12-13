@@ -43,8 +43,26 @@
 					ps.setInt(1, val);
 				}
 				else if (param.equals("Fare")){
-					float val = Float.parseFloat(value);
-					ps.setFloat(1, val);
+					float fare = Float.parseFloat(value);
+					ps.setFloat(1, fare);
+					
+					String getCount = "SELECT count(*) FROM hasStop WHERE Transit_Line_Name = '" + trainLine + "'";
+					
+					ResultSet countSet = stmt.executeQuery(getCount);
+
+					countSet.next();
+					if (countSet.getFloat("count(*)")>0){
+						String updateFare = "UPDATE hasStop SET Fare = ?" 
+							+ " WHERE Transit_Line_Name = ?";
+					
+						PreparedStatement fareS = con.prepareStatement(updateFare);
+	
+						fareS.setFloat(1, fare/countSet.getFloat("count(*)"));
+						fareS.setString(2, trainLine);
+	
+						fareS.executeUpdate();
+					}
+
 				}
 
 				ps.setString(2, trainLine);
@@ -67,7 +85,7 @@
 
 			}else if (entity.equals("addStops")){
 				session.setAttribute("trainline", trainLine);
-				response.sendRedirect(request.getContextPath() + "/showStopsRep.jsp");
+				response.sendRedirect(request.getContextPath() + "/repShowStops.jsp");
 			}
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 

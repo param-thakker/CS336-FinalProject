@@ -117,13 +117,39 @@
 					ps.executeUpdate();
 
 				}
-
+			
+				
+				
 				//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 
 			}
-		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
+			String getCount = "SELECT count(*) count FROM hasStop WHERE Transit_Line_Name = '" + trainLine + "'";
+			
+			ResultSet countSet = stmt.executeQuery(getCount);
 
-		//Run the query against the DB
+			countSet.next();
+			int count=(countSet.getInt("count"));
+
+			
+				String getFare = "SELECT fare FROM TransitLine WHERE Transit_Line_Name = '" + trainLine + "'";
+				ResultSet fareSet=stmt.executeQuery(getFare);
+				try{
+					fareSet.next();
+					//out.print( fareSet.getFloat("fare")+"fare");
+					if ( (count>0) && fareSet.getFloat("fare")>=0.0){
+						
+						String updateFare = "UPDATE hasStop SET Fare = ?" 
+							+ " WHERE Transit_Line_Name = ?";
+					
+						PreparedStatement fareS = con.prepareStatement(updateFare);
+
+						fareS.setFloat(1, fareSet.getFloat("fare")/count);
+						fareS.setString(2, trainLine);
+
+						fareS.executeUpdate();
+					}
+				} catch (Exception e){
+				}
 		
 		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.
 		con.close();

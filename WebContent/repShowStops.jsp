@@ -25,9 +25,12 @@
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 			//Get the combobox from the index.jsp
-		//	String entity = request.getParameter("price");
+		//	String entity = request.getParameter("trainline");
 			//Make a SELECT query from the sells table with the price range specified by the 'price' parameter at the index.jsp
-			String getTrainSchedule = "SELECT * FROM TransitLine";
+			String trainLine = (String)session.getAttribute("trainline");
+
+			String getTrainSchedule = "SELECT s.StationID id, s.StationName name, h.Fare fare, h.Arrival arr, h.Departure dep " +
+					"FROM hasStop h, Station s WHERE Transit_Line_Name = '"+trainLine+"' and s.StationID = h.StationID ORDER BY arr ASC";
 			
 			ResultSet result = stmt.executeQuery(getTrainSchedule);
 
@@ -38,32 +41,27 @@
 			out.print("<tr>");
 			//make a column
 			out.print("<td>");
+			out.print("stationID");
+			out.print("</td>");
+			out.print("<td>");
 			//print out column header
-			out.print("Transit_Line_Name");
+			out.print("nameStop");
 			out.print("</td>");
 			//make a column
-			out.print("<td>");
-			out.print("Origin");
-			out.print("</td>");
-			//make a column
-			out.print("<td>");
-			out.print("Destination");
-			out.print("</td>");
-			out.print("<td>");
-			out.print("ArrivalTime");
-			out.print("</td>");
-			out.print("<td>");
-			out.print("DepartureTime");
-			out.print("</td>");
-			out.print("<td>");
-			out.print("Train_Number");
-			out.print("</td>");
 			out.print("<td>");
 			out.print("Fare");
 			out.print("</td>");
+			//make a column
 			out.print("<td>");
-			out.print("TravelTime");
+			out.print("ArrivalTime");
 			out.print("</td>");
+			
+			out.print("<td>");
+			out.print("DepartureTime");
+			out.print("</td>");
+			
+			out.print("<td>");
+
 			out.print("</tr>");
 
 			//parse out the results
@@ -72,33 +70,24 @@
 				out.print("<tr>");
 				//make a column
 				out.print("<td>");
+				out.print(result.getString("id"));
+				out.print("</td>");
+				out.print("<td>");
 				//Print out current bar name:
-				out.print(result.getString("Transit_Line_Name"));
+				out.print(result.getString("name"));
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current beer name:
-				out.print(result.getString("Origin"));
+				out.print(result.getFloat("fare"));
+				out.print("</td>");
+				
+				out.print("<td>");
+				out.print(result.getTimestamp("arr"));
 				out.print("</td>");
 				out.print("<td>");
-				//Print out current price
-				out.print(result.getString("Destination"));
+				out.print(result.getTimestamp("dep"));
 				out.print("</td>");
-				out.print("<td>");
-				out.print(result.getTimestamp("ArrivalTime"));
-				out.print("</td>");
-				out.print("<td>");
-				//Print out current price
-				out.print(result.getTimestamp("DepartureTime"));
-				out.print("</td>");
-				out.print("<td>");
-				out.print(result.getInt("Train_Number"));
-				out.print("</td>");
-				out.print("<td>");
-				out.print(result.getFloat("Fare"));
-				out.print("</td>");
-				out.print("<td>");
-				out.print(result.getInt("TravelTime"));
-				out.print("</td>");
+				
 				
 				out.print("</tr>");
 
@@ -116,27 +105,26 @@
 	%>
 	<br>
 		<br>
-	<form method="post" action="editLineRep.jsp">
-			  <input type="radio" name="command" value="update"/>Update
+	<form method="post" action="repEditStops.jsp">
+			  <input type="radio" name="command" value="update"/> Edit Stop
 			  <br>
-			  <input type="radio" name="command" value="add"/>Add (only TrainLine parameter is needed)
+			  <input type="radio" name="command" value="add"/> Add Stop
 			  <br>
-			  
-		  <input type="radio" name="command" value="delete"/>Delete (only TrainLine parameter is needed)
+		  <input type="radio" name="command" value="delete"/>Delete Stop (only Station parameter needed)
 		    <!-- when the radio for bars is chosen, then 'command' will have value 
 		     | 'bars', in the show.jsp file, when you access request.parameters -->
 		  <br>
-		  			  <input type="radio" name="command" value="addStops"/>Add Stops to (only TrainLine parameter is needed)
-			  <br>
+		
+
 	<table>
 	<tr>
-	<td>TrainLine</td><td><input type="text" name="trainline"></td>
-	</tr>
-		<tr>
-	<td>Parameter</td><td><input type="text" name="param"></td>
+	<td>StationID</td><td><input type="text" name="station"></td>
 	</tr>
 	<tr>
-	<td>Value</td><td><input type="text" name="value"></td>
+	<td>Departure</td><td><input type="text" name="depart"></td>
+	</tr>
+	<tr>
+	<td>Arrival</td><td><input type="text" name="arrive"></td>
 	</tr>
 	</table>
 	<input type="submit" value="Commit">
