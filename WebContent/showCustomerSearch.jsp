@@ -14,7 +14,6 @@
 			//Get the database connection
 			ApplicationDB db = new ApplicationDB();	
 			Connection con = db.getConnection();		
-
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 			//Get the selected radio button from the index.jsp
@@ -26,9 +25,9 @@
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
 			String str;
 			if(sortOrder != null)
-				str = "SELECT * FROM TransitLine WHERE Origin='"+origin+"' AND Destination='"+destination+"' AND DepartureTime LIKE '"+date+"%' ORDER BY "+sortOrder;
+				str = "SELECT * FROM TransitLine WHERE Origin='"+origin+"' AND Destination='"+destination+"' AND CAST(DepartureTime AS DATE) = '"+date+"' ORDER BY "+sortOrder;
 			else 
-				str = "SELECT * FROM TransitLine WHERE Origin='"+origin+"' AND Destination='"+destination+"' AND DepartureTime LIKE '"+date+"%'";
+				str = "SELECT * FROM TransitLine WHERE Origin='"+origin+"' AND Destination='"+destination+"' AND CAST(DepartureTime AS DATE) = '"+date+"'";
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 		%>

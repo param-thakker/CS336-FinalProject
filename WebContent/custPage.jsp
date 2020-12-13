@@ -29,7 +29,7 @@ RESERVATIONS
    <br>
   Destination: <input type="text" name="destinationStation" placeholder="Matawan"/> 
   <br>
-  Date of Travel (MM/DD/YYYY): <input type="text" name="dateOfTravel" placeholder="12/22/2020"/> 
+  Date of Travel (YYYY/MM/DD): <input type="text" name="dateOfTravel" placeholder="2020-12-10"/> 
   <br>
   <input type="submit" value="Search" />
 </form>
