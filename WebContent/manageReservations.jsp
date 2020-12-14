@@ -19,7 +19,7 @@
 			Statement stmt = con.createStatement();
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
 			Date cur = new java.util.Date();
-			String current = "'"+cur.toString().substring(24,28)+"-"+ (cur.getMonth()+1) + "-" + (cur.getDate()+1)+"'";
+			String current = cur.toString().substring(24,28)+"-"+ (cur.getMonth()+1) + "-" + (cur.getDate());
 			String loggedInUser = (String) session.getAttribute("user");
 			loggedInUser="Username";
 			String str = "SELECT * FROM ResPassTransLine WHERE Username = '"+loggedInUser+"'";
@@ -45,8 +45,8 @@
 		</tr>
 			<%
 			//parse out the results
-			while (result.next()) { %>
-				<%if(true){ %>
+			while (result.next()) {%>
+				<% if(result.getString("DepartureTime").substring(0,10).compareTo(current)>0) {%>
 				<tr>    
 				<td><input type="radio" name="tripToDelete" value="<%= result.getString("Reservation_Number") %>"/></td>
 					<td><%= result.getString("Reservation_Number") %></td>
@@ -62,9 +62,11 @@
 		</table>
 			<input type="submit" value="Delete">
 		</form>
+		<% result.beforeFirst(); %>
 		Past Reservations:
 		<table>
 		<tr>    
+			<td>Select</td>
 			<td>Reservation Number</td>
 			<td>Reservation Date</td>
 			<td>Name</td>
@@ -75,9 +77,9 @@
 		</tr>
 			<%
 			//parse out the results
-			while (result.next()) { %>
-				<%if(true){ %>
-				<tr>    
+			while (result.next()) {%>
+				<%if(result.getString("DepartureTime").substring(0,10).compareTo(current)<0){%>
+				<tr>
 					<td><%= result.getString("Reservation_Number") %></td>
 					<td><%= result.getString("Reservation_Date") %></td>					
 					<td><%= result.getString("Transit_Line_Name") %></td>
@@ -87,7 +89,7 @@
 					<td><%= result.getString("Fare") %></td>
 				</tr>
 				<%}%>
-			<%}
+			<% }
 			//close the connection.
 			db.closeConnection(con);
 			%>
