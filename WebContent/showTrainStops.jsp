@@ -37,7 +37,6 @@
 			//parse out the results
 			while (result.next()) { %>
 				<tr>    
-				<td><input type="radio" name="selectedTrip" value="<%= result.getString("Transit_Line_Name") %>"/></td>
 					<td><%= result.getString("Transit_Line_Name") %></td>
 					<td><%= result.getString("DepartureTime") %></td>
 					<td><%= result.getString("ArrivalTime") %></td>
