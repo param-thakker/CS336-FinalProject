@@ -14,11 +14,6 @@
 							  
 <br>
 
-
-SALES REPORT
-<br>
-<br>
-
 	
 RESERVATIONS
 <br>
