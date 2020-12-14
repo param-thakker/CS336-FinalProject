@@ -32,14 +32,13 @@
 			} else {
 				//Make a SELECT query from the sells table with the price range specified by the 'price' parameter at the index.jsp
 				//String str = "SELECT * FROM Accounts WHERE username = " + username + " and password ";
-				String str = "SELECT * FROM Accounts WHERE Username=" + username + " AND Password=" + password;
-
+				String str = "SELECT * FROM Accounts WHERE Username='" + username + "' AND Password='" + password + "'";
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(str);
 				if (result.next()) {
 					String isIn = result.getString("Usertype");
 					session.setAttribute("user", username);
-					out.print("Login Successful");
+				
 					if (isIn.equals("admin"))
 						response.sendRedirect(request.getContextPath() + "/adminPage.jsp");
 					else if (isIn.equals("rep"))
