@@ -13,7 +13,7 @@
   <div class="form">
     <form class="register-form" method="post" action="loginInsert.jsp">
     <input type="text" placeholder="First Name" name="fname"/>
-    <input type="text" placeholder="Last Name" name="fname"/>
+    <input type="text" placeholder="Last Name" name="lname"/>
       <input type="text" placeholder="Username" name="username"/>
       <input type="password" placeholder="Password" name="password"/>
       <input type="text" placeholder="Email Address" name="email"/>
