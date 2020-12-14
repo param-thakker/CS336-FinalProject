@@ -27,21 +27,21 @@
 		Stops: 
 		<table>
 		<tr>    
-			<td>Name</td>
+			<td>Station Name</td>
+			<td>City</td>
 			<td>Departure Time</td>
 			<td>Arrival Time</td>
 			<td>Price</td>
-			<td>Time</td>
 		</tr>
 			<%
 			//parse out the results
 			while (result.next()) { %>
 				<tr>    
-					<td><%= result.getString("Transit_Line_Name") %></td>
-					<td><%= result.getString("DepartureTime") %></td>
-					<td><%= result.getString("ArrivalTime") %></td>
+					<td><%= result.getString("StationName") %></td>
+					<td><%= result.getString("City") %></td>
+					<td><%= result.getString("Departure") %></td>
+					<td><%= result.getString("Arrival") %></td>
 					<td><%= result.getString("Fare") %></td>
-					<td><%= result.getString("TravelTime") %></td>
 				</tr>
 				
 
