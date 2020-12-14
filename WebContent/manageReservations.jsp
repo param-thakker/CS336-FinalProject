@@ -18,15 +18,19 @@
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-			String Current = (new Date()).toString();
+			Date cur = new java.util.Date();
+			String current = cur.toString().substring(24,28)+"-"+ (cur.getMonth()+1) + "-" + (cur.getDate());
 			String loggedInUser = (String) session.getAttribute("user");
 			loggedInUser="Username";
-			String str = "SELECT * FROM ResPassTransLine WHERE Username = '"+loggedInUser+"';";
+			String str = "SELECT * FROM ResPassTransLine WHERE Username = '"+loggedInUser+"'";
 			//Run the query against the database.
+			ResultSet result1 = stmt.executeQuery(str);
 			ResultSet result = stmt.executeQuery(str);
+			
+			
 		%>
 		
-		Select a reservation to delete: 
+		Select a reservation to delete(Current Reservations): 
 		<form method="get" action="deleteReservation.jsp">
 		<table>
 		<tr>    
@@ -41,7 +45,8 @@
 		</tr>
 			<%
 			//parse out the results
-			while (result.next()) { %>
+			while (result.next()) {%>
+				<% if(result.getString("DepartureTime").substring(0,10).compareTo(current)>0) {%>
 				<tr>    
 				<td><input type="radio" name="tripToDelete" value="<%= result.getString("Reservation_Number") %>"/></td>
 					<td><%= result.getString("Reservation_Number") %></td>
@@ -52,16 +57,43 @@
 					<td><%= result.getString("DepartureTime") %></td>
 					<td><%= result.getString("Fare") %></td>
 				</tr>
-				
-
+				<%}%>
+			<%} %>
+		</table>
+			<input type="submit" value="Delete">
+		</form>
+		<% result.beforeFirst(); %>
+		Past Reservations:
+		<table>
+		<tr>    
+			<td>Select</td>
+			<td>Reservation Number</td>
+			<td>Reservation Date</td>
+			<td>Name</td>
+			<td>Origin</td>
+			<td>Destination</td>
+			<td>Departure Time</td>
+			<td>Price</td>
+		</tr>
+			<%
+			//parse out the results
+			while (result.next()) {%>
+				<%if(result.getString("DepartureTime").substring(0,10).compareTo(current)<0){%>
+				<tr>
+					<td><%= result.getString("Reservation_Number") %></td>
+					<td><%= result.getString("Reservation_Date") %></td>					
+					<td><%= result.getString("Transit_Line_Name") %></td>
+					<td><%= result.getString("Origin") %></td>
+					<td><%= result.getString("Destination") %></td>
+					<td><%= result.getString("DepartureTime") %></td>
+					<td><%= result.getString("Fare") %></td>
+				</tr>
+				<%}%>
 			<% }
 			//close the connection.
 			db.closeConnection(con);
 			%>
 		</table>
-			<input type="submit" value="Delete">
-		</form>
-
 			
 		<%} catch (Exception e) {
 			out.print(e);
