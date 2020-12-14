@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS TRAIN;
 USE TRAIN;
 CREATE TABLE IF NOT EXISTS Station(
 				StationID int primary key,
-				StationName varchar(30),
+				StationName varchar(30) not null,
                 State varchar(20),
                 City varchar(20)
 );
@@ -19,13 +19,17 @@ CREATE TABLE IF NOT EXISTS EmployeeWorksAt(
 );
 CREATE TABLE IF NOT EXISTS TransitLine(
 				Transit_Line_Name varchar(20) primary key,
-                Origin varchar(20),
-                Destination varchar(20),
+                Origin varchar(30),
+                Destination varchar(30),
 				DepartureTime datetime,
                 ArrivalTime datetime,
                 Train_Number int,
                 Fare float,
-                TravelTime int
+                TravelTime int,
+                OriginStationID int,
+                DestinationStationID int,
+                foreign key(OriginStationID) references Station (StationID) on update cascade,
+				foreign key(DestinationStationID) references Station(StationID) on update cascade
 );
 CREATE TABLE IF NOT EXISTS hasStop(
 				Transit_Line_Name varchar(20),
