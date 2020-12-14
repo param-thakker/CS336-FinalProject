@@ -47,7 +47,7 @@
 			<input type="submit" value="Sort">
 		</form>
 		
-		Pick a train: 
+		Inactive Trains: 
 		<form method="get" action="makeReservation.jsp">
 		<table>
 		<tr>    
@@ -61,6 +61,7 @@
 			<%
 			//parse out the results
 			while (result.next()) { %>
+				<%if(true){ %>
 				<tr>    
 				<td><input type="radio" name="selectedTrip" value="<%= result.getString("Transit_Line_Name") %>"/></td>
 					<td><%= result.getString("Transit_Line_Name") %></td>
@@ -68,9 +69,37 @@
 					<td><%= result.getString("ArrivalTime") %></td>
 					<td><%= result.getString("Fare") %></td>
 					<td><%= result.getString("TravelTime") %></td>
-				</tr>
-				
-
+				</tr>    
+				<%}%>
+			<% }
+			%>
+		</table>
+		<% result.beforeFirst(); %>
+		
+		Active Trains: 
+		<form method="get" action="makeReservation.jsp">
+		<table>
+		<tr>    
+			<td>Select</td>
+			<td>Name</td>
+			<td>Departure Time</td>
+			<td>Arrival Time</td>
+			<td>Price</td>
+			<td>Time</td>
+		</tr>
+			<%
+			//parse out the results
+			while (result.next()) { %>
+				<%if(true){ %>
+				<tr>    
+				<td><input type="radio" name="selectedTrip" value="<%= result.getString("Transit_Line_Name") %>"/></td>
+					<td><%= result.getString("Transit_Line_Name") %></td>
+					<td><%= result.getString("DepartureTime") %></td>
+					<td><%= result.getString("ArrivalTime") %></td>
+					<td><%= result.getString("Fare") %></td>
+					<td><%= result.getString("TravelTime") %></td>
+				</tr>    
+				<%}%>
 			<% }
 			//close the connection.
 			db.closeConnection(con);
