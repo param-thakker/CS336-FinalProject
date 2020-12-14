@@ -35,6 +35,16 @@ RESERVATIONS
 </form>
 <br>
 
+TRAIN INFO
+<br>
+<br>
+<form method="get" action="showTrainStops.jsp">
+
+ Train Line: <input type="text" name="trainLine" placeholder="Raritan Valley"/> 
+   <br>
+  <input type="submit" value="See Stops" />
+</form>
+<br>
 	
 QUESTIONS/FEEDBACK
 <br>
