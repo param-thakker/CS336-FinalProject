@@ -45,10 +45,8 @@
 		</tr>
 			<%
 			//parse out the results
-			while (result.next()) { 
-				//if(result.getString("DepartureTime").substring(0,10).compareTo(current)>0)
-					//continue;
-					%>
+			while (result.next()) { %>
+				<%if(true){ %>
 				<tr>    
 				<td><input type="radio" name="tripToDelete" value="<%= result.getString("Reservation_Number") %>"/></td>
 					<td><%= result.getString("Reservation_Number") %></td>
@@ -59,6 +57,7 @@
 					<td><%= result.getString("DepartureTime") %></td>
 					<td><%= result.getString("Fare") %></td>
 				</tr>
+				<%}%>
 			<%} %>
 		</table>
 			<input type="submit" value="Delete">
@@ -66,7 +65,6 @@
 		Past Reservations:
 		<table>
 		<tr>    
-			<td>Select</td>
 			<td>Reservation Number</td>
 			<td>Reservation Date</td>
 			<td>Name</td>
@@ -77,11 +75,9 @@
 		</tr>
 			<%
 			//parse out the results
-			while (result.next()) {
-				//if(result.getString("DepartureTime").substring(0,10).compareTo(current)>0)
-					//continue;
-					%>
-				<tr>
+			while (result.next()) { %>
+				<%if(true){ %>
+				<tr>    
 					<td><%= result.getString("Reservation_Number") %></td>
 					<td><%= result.getString("Reservation_Date") %></td>					
 					<td><%= result.getString("Transit_Line_Name") %></td>
@@ -90,9 +86,8 @@
 					<td><%= result.getString("DepartureTime") %></td>
 					<td><%= result.getString("Fare") %></td>
 				</tr>
-				
-
-			<% }
+				<%}%>
+			<%}
 			//close the connection.
 			db.closeConnection(con);
 			%>
