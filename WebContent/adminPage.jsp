@@ -210,6 +210,8 @@ Click to see the 5 Most Active Transit Lines: <input type="submit" name="fiveMos
 </form>
 <br>
 <br>
-
+	<form action="logout.jsp" method="GET">
+    	<button>logout</button>
+	</form>
 </body>
 </html>

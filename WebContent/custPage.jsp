@@ -57,6 +57,8 @@ QUESTIONS/FEEDBACK
   <input type="submit" value="Submit" />
 </form>
 <br>
-
+	<form action="logout.jsp" method="GET">
+    	<button>logout</button>
+	</form>
 </body>
 </html>

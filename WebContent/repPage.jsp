@@ -130,5 +130,8 @@
 	<form action="logout.jsp" method="GET">
     	<button>Logout</button>
 	</form>
+		<form action="logout.jsp" method="GET">
+    	<button>logout</button>
+	</form>
 </body>
 </html>
