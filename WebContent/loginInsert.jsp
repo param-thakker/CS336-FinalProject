@@ -21,23 +21,27 @@
 		Statement stmt = con.createStatement();
 
 		//Get parameters from the HTML form at the index.jsp
+		String fname = request.getParameter("fname");
+		String lname = request.getParameter("lname");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 	//	out.print("Checkpoint 1\n");
 
 		//Make an insert statement for the Sells table:
-		String insert = "INSERT INTO Accounts(email, password, username, userType)"
+		String insert = "INSERT INTO Accounts(First_Name, Last_Name, email, password, username, userType)"
 				+ "VALUES (?, ?, ?, ?)";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
 	//	out.print("Checkpoint 2\n");
 
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-		ps.setString(1, email);
-		ps.setString(2, password);
-		ps.setString(3, username);
-		ps.setString(4, "customer");
+		ps.setString(1, fname);
+		ps.setString(2, lname);
+		ps.setString(3, email);
+		ps.setString(4, password);
+		ps.setString(5, username);
+		ps.setString(6, "customer");
 		//Run the query against the DB
 	//	out.print("Checkpoint 3\n");
 		ps.executeUpdate();

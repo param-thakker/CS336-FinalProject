@@ -12,15 +12,17 @@
 <div class="login-page">
   <div class="form">
     <form class="register-form" method="post" action="loginInsert.jsp">
-      <input type="text" placeholder="username" name="username"/>
-      <input type="password" placeholder="password" name="password"/>
-      <input type="text" placeholder="email address" name="email"/>
+    <input type="text" placeholder="First Name" name="fname"/>
+    <input type="text" placeholder="Last Name" name="fname"/>
+      <input type="text" placeholder="Username" name="username"/>
+      <input type="password" placeholder="Password" name="password"/>
+      <input type="text" placeholder="Email Address" name="email"/>
       <button>create</button>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
     <form class="login-form" method="get" action="accessLogin.jsp">
-      <input type="text" placeholder="username" name="username"/>
-      <input type="password" placeholder="password" name="password"/>
+      <input type="text" placeholder="Username" name="username"/>
+      <input type="password" placeholder="Password" name="password"/>
       <button>login</button>
       <p class="message">Not registered? <a href="#">Create an account</a></p>
     </form>
