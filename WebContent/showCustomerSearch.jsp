@@ -92,7 +92,9 @@
 		  <br>
 		  			<input type="submit" value="Make a reservation">
 		</form>
-
+		<form action="custPage.jsp">
+         <button type="submit">Back</button>
+      	</form>	
 			
 		<%} catch (Exception e) {
 			out.print(e);

@@ -94,7 +94,9 @@
 			db.closeConnection(con);
 			%>
 		</table>
-			
+		<form action="showCustomerSearch.jsp">
+         <button type="submit">Back</button>
+      	</form>	
 		<%} catch (Exception e) {
 			out.print(e);
 		}%>

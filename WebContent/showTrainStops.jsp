@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Insert title here</title>
+		<title>Train stops</title>
 	</head>
 		<% try {
 	
@@ -19,7 +19,7 @@
 			//Get the selected radio button from the index.jsp
 			String trainLine = request.getParameter("trainLine");
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-			String str = "SELECT * FROM TransitLine";
+			String str = "SELECT s.StationName, s.City, t1.Departure, t1.Arrival, t1.Fare  FROM (SELECT * FROM hasStop WHERE Transit_Line_Name = '"+trainLine+"') t1, Station s WHERE t1.StationID = s.StationID;"; //in (SELECT StationID FROM hasStop WHERE Transit_Line_Name = '"+trainLine+"')";
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 		%>
@@ -50,6 +50,9 @@
 			db.closeConnection(con);
 			%>
 		</table>
+		<form action="custPage.jsp">
+         <button type="submit">Back</button>
+      	</form>	
 
 		<%} catch (Exception e) {
 			out.print(e);
