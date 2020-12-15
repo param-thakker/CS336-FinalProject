@@ -13,7 +13,7 @@
 <body style="background-color:powderblue;">
 
 				  
-<b>CUSTOMER REPRESENTATIVES</b>
+<b><u>CUSTOMER REPRESENTATIVES</u></b>
 <br><br>
 
 	<%
@@ -106,8 +106,8 @@
 			out.print("</table>");
 			%>
 			<br>
-			<form method="get" action="getBestCustomer.jsp">
-				 <input type="submit" name="bestCustomer" value="Add Customer Rep" />
+			<form method="post" action="addCustomerRep.jsp">
+				 <input type="submit" name="addRep" value="Add Customer Rep" />
 				 </form>
 			<% 
 
@@ -121,29 +121,30 @@
 		}
 	%>
 <br>
+<br>
 
 
 
 
 
-<b>SALES REPORT</b>
+<b><u>SALES REPORT</u></b>
 <br>
 <br>
 See sales report per month:
 <form method="get" action="salesReport.jsp">
  <select name="month" placeholder="">
-  <option name="January" value="Jan">January</option>
-  <option name="February" value="Feb">February</option>
-  <option name="March" value="Mar">March</option>
-  <option name="April" value="Apr">April</option>
+  <option name="January" value="January">January</option>
+  <option name="February" value="February">February</option>
+  <option name="March" value="March">March</option>
+  <option name="April" value="April">April</option>
 	<option name="May" value="May">May</option>
-  <option name="June" value="Jun">June</option>
-  <option name="July" value="Jul">July</option>
-  <option name="August" value="Aug">August</option>
-	<option name="September" value="Sep">September</option>
-  <option name="October" value="Oct">October</option>
-  <option name="November" value="Nov">November</option>
-  <option name="December" value="Dec">December</option>
+  <option name="June" value="June">June</option>
+  <option name="July" value="July">July</option>
+  <option name="August" value="August">August</option>
+	<option name="September" value="September">September</option>
+  <option name="October" value="October">October</option>
+  <option name="November" value="November">November</option>
+  <option name="December" value="December">December</option>
 </select> <input type="submit" value="Search" />
 
 
@@ -154,7 +155,7 @@ See sales report per month:
 
 
 	
-<b>RESERVATIONS</b>
+<b><u>RESERVATIONS</u></b>
 <br>
 <br>
 <form method="get" action="resbyTL.jsp">
@@ -173,7 +174,7 @@ See sales report per month:
 
 
 
-<b>REVENUE</b>
+<b><u>REVENUE</u></b>
 <br>
 <br>
 	<form method="get" action="revbyTL.jsp">
@@ -190,7 +191,7 @@ See sales report per month:
 
 
 
-<b>BEST CUSTOMER</b>
+<b><u>BEST CUSTOMER</u></b>
 <br>
 <br>
 <form method="get" action="getBestCustomer.jsp">
@@ -201,7 +202,7 @@ Click to see the best customer: <input type="submit" name="bestCustomer" value="
 
 
 
-<b>5 Most Active Transit Lines</b>
+<b><u>5 Most Active Transit Lines</u></b>
 <br>
 <br>
 <form method="get" action="fiveMostActive.jsp">

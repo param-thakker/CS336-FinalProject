@@ -10,10 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		session.setAttribute("user", true);
-		out.print("THIS IS THE ADMIN PAGE");
-	%>
+
 	<%
 		List<String> list = new ArrayList<String>();
 
@@ -32,8 +29,8 @@
 			String[] nameSplit=customerName.split("\\s+");
 			String First_Name=nameSplit[0];
 			String Last_Name=nameSplit[1];
-			String str = "SELECT " + customerName + ",sum(Fare) as Revenue FROM ResPassTransLine r, Customer c WHERE c.First_Name=" + First_Name + " AND c.Last_Name="
-					+ Last_Name + " AND c.Username=r.Username GROUP BY " + First_Name + " " + Last_Name ;
+			String str = "SELECT ROUND(sum(Fare),2) as Revenue FROM ResPassTransLine r, Customer c WHERE c.First_Name='" + First_Name + "' AND c.Last_Name='"
+					+ Last_Name + "' AND c.Username=r.Username" ;
 			
 			
 			//sort by month according to o.g. doc
@@ -42,67 +39,50 @@
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 
-			
-			//Make an HTML table to show the results in:
-			/*out.print("<table>");
+			out.print("<table border=2>");
 
 			//make a row
 			out.print("<tr>");
 			//make a column
+			out.print("Revenue by " + customerName );
+			%><br><br><% 
 			out.print("<td>");
 			//print out column header
-			out.print("user");
-			out.print("</td>");
-			//make a column
-			out.print("<td>");
-			out.print("pw");
-			out.print("</td>");
-			//make a column
-			out.print("<td>");
-			out.print("email");
-			out.print("</td>");
-			//make a column
-			out.print("<td>");
-			out.print("pw");
+			out.print("TotalRevenue");
 			out.print("</td>");
 			out.print("</tr>");
-
-			//parse out the results
+			//out.print("<td>");
+				//Print out current bar name:
+				//out.print(result.getString("Month"));
+				//out.print("</td>");
 			while (result.next()) {
 				//make a row
 				out.print("<tr>");
 				//make a column
+				
 				out.print("<td>");
 				//Print out current bar name:
-				out.print(result.getString("username"));
+				out.print("$");
+				out.print(result.getString("Revenue"));
 				out.print("</td>");
-				out.print("<td>");
-				//Print out current beer name:
-				out.print(result.getString("password"));
-				out.print("</td>");
-				out.print("<td>");
-				//Print out current price
-				out.print(result.getString("email"));
-				out.print("</td>");
-				out.print("<td>");
-				//Print out current price
-				out.print(result.getString("userType"));
-				out.print("</td>");
-
+				
 				out.print("</tr>");
 
 			}
-			out.print("</table>");*/
+			out.print("</table>");
 
-			//close the connection.
+			db.closeConnection(con);
 			con.close();
 
-		} catch (Exception e) {
-		}
-	%>
+		%>
+			
+		<%} catch (Exception e) {
+			out.print(e);
+		}%>
 	
-	<form action="logout.jsp" method="GET">
-    	<button>Logout</button>
-	</form>
+	
+	<br>
+	
+	<button type="button" name="back" onclick="history.back()"> Back </button>
 </body>
 </html>
