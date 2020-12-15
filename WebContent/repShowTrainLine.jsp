@@ -43,11 +43,11 @@
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("Origin");
+			out.print("OriginStationID");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("Destination");
+			out.print("DestinationStationID");
 			out.print("</td>");
 			out.print("<td>");
 			out.print("ArrivalTime");
@@ -77,11 +77,11 @@
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current beer name:
-				out.print(result.getString("Origin"));
+				out.print(result.getInt("OriginStationID"));
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current price
-				out.print(result.getString("Destination"));
+				out.print(result.getInt("DestinationStationID"));
 				out.print("</td>");
 				out.print("<td>");
 				out.print(result.getTimestamp("ArrivalTime"));
@@ -133,7 +133,7 @@
 	<td>TrainLine</td><td><input type="text" name="trainline"></td>
 	</tr>
 		<tr>
-	<td>Parameter</td><td><input type="text" name="param"></td>
+	<td>Parameter</td><td><input type="text" name="param"> (Note that for times, format is yyyy-mm-dd hh:mm:ss)</td>
 	</tr>
 	<tr>
 	<td>Value</td><td><input type="text" name="value"></td>

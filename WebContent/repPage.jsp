@@ -29,7 +29,7 @@
 		//	String entity = request.getParameter("price");
 			//Make a SELECT query from the sells table with the price range specified by the 'price' parameter at the index.jsp
 			String str = "SELECT * FROM Station";
-			String getTrainSchedule = "SELECT * FROM TransitLine";
+			//String getTrainSchedule = "SELECT * FROM TransitLine";
 			
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
@@ -108,9 +108,13 @@
 	
 
 	<form method="post" action="repShowTrains.jsp">
-	  Produce list of all train schedules containing
-    <br>
-	Station: <input type="text" name="station">
+	  Produce list of all train schedules
+	  <br>
+	  <input type="radio" name="command" value="origin"/>Originating at
+	  <br>
+	  <input type="radio" name="command" value="destination"/>Destined for
+	    <br>
+	StationID: <input type="text" name="station">
     <br>
 	<input type="submit" value="Commit">
 	</form>
@@ -129,9 +133,6 @@
 	
 	<form action="logout.jsp" method="GET">
     	<button>Logout</button>
-	</form>
-		<form action="logout.jsp" method="GET">
-    	<button>logout</button>
 	</form>
 </body>
 </html>

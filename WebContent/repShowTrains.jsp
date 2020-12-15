@@ -20,10 +20,18 @@
 			Statement stmt = con.createStatement();
 			//Get the selected radio button from the index.jsp
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-			String station = request.getParameter("station");
+			int stationID = Integer.parseInt(request.getParameter("station"));
+			
+			String entity = request.getParameter("command");
+			String str="";
+			if (entity.equals("origin")){
+				str = "SELECT t.Transit_Line_Name transitline, t.DepartureTime dep, t.ArrivalTime arr"
+						+ " FROM TransitLine t WHERE t.OriginStationID = '" + stationID + "'";
+			} else if (entity.equals("destination")){
+				str = "SELECT t.Transit_Line_Name transitline, t.DepartureTime dep, t.ArrivalTime arr"
+						+ " FROM TransitLine t WHERE t.DestinationStationID = '" + stationID + "'";
 
-			String str = "SELECT h.Transit_Line_Name transitline, h.Departure dep, h.Arrival arr"
-						+ " FROM hasStop h, Station s WHERE s.stationName = '" + station + "' and s.StationID = h.StationID";
+			}
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 			

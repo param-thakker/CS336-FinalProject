@@ -121,7 +121,7 @@
 	<td>StationID</td><td><input type="text" name="station"></td>
 	</tr>
 	<tr>
-	<td>Departure</td><td><input type="text" name="depart"></td>
+	<td>Departure</td><td><input type="text" name="depart"> (Again, format is yyyy-mm-dd hh:mm:ss)</td>
 	</tr>
 	<tr>
 	<td>Arrival</td><td><input type="text" name="arrive"></td>
