@@ -24,14 +24,13 @@
 			loggedInUser="Username";
 			String str = "SELECT * FROM ResPassTransLine WHERE Username = '"+loggedInUser+"'";
 			//Run the query against the database.
-			ResultSet result1 = stmt.executeQuery(str);
 			ResultSet result = stmt.executeQuery(str);
 			
 			
 		%>
 		
 		Select a reservation to delete(Current Reservations): 
-		<form method="get" action="deleteReservation.jsp">
+		<form method="get" action="makeReservation.jsp">
 		<table>
 		<tr>    
 			<td>Select</td>
@@ -42,6 +41,8 @@
 			<td>Destination</td>
 			<td>Departure Time</td>
 			<td>Price</td>
+			<td>Return Time</td>
+			<td>Return Name</td>
 		</tr>
 			<%
 			//parse out the results
@@ -56,6 +57,8 @@
 					<td><%= result.getString("Destination") %></td>
 					<td><%= result.getString("DepartureTime") %></td>
 					<td><%= result.getString("Fare") %></td>
+					<td><%= result.getString("ReturnTime") %></td>
+					<td><%= result.getString("ReturnTransitLine") %></td>
 				</tr>
 				<%}%>
 			<%} %>
@@ -74,12 +77,15 @@
 			<td>Destination</td>
 			<td>Departure Time</td>
 			<td>Price</td>
+			<td>Return Time</td>
+			<td>Return Name</td>
 		</tr>
 			<%
 			//parse out the results
 			while (result.next()) {%>
 				<%if(result.getString("DepartureTime").substring(0,10).compareTo(current)<0){%>
 				<tr>
+					<td></td>
 					<td><%= result.getString("Reservation_Number") %></td>
 					<td><%= result.getString("Reservation_Date") %></td>					
 					<td><%= result.getString("Transit_Line_Name") %></td>
@@ -87,6 +93,8 @@
 					<td><%= result.getString("Destination") %></td>
 					<td><%= result.getString("DepartureTime") %></td>
 					<td><%= result.getString("Fare") %></td>
+					<td><%= result.getString("ReturnTime") %></td>
+					<td><%= result.getString("ReturnTransitLine") %></td>
 				</tr>
 				<%}%>
 			<% }

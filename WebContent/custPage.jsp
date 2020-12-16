@@ -7,11 +7,16 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Customer Home</title>
+		<title>Admin Home</title>
 	</head>
 <body style="background-color:powderblue;">
 
 							  
+<br>
+
+
+SALES REPORT
+<br>
 <br>
 
 	
@@ -52,8 +57,6 @@ QUESTIONS/FEEDBACK
   <input type="submit" value="Submit" />
 </form>
 <br>
-	<form action="logout.jsp" method="GET">
-    	<button>logout</button>
-	</form>
+
 </body>
 </html>

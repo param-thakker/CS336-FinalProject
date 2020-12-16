@@ -21,7 +21,6 @@
 			String destination = request.getParameter("destinationStation");
 			String date = request.getParameter("dateOfTravel");
 			String sortOrder = request.getParameter("sortBy");
-			System.out.println(sortOrder);
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
 			String str;
 			if(sortOrder != null)
@@ -70,26 +69,32 @@
 					<td><%= result.getString("TravelTime") %></td>
 				</tr>
 				
-
 			<% }
 			//close the connection.
 			db.closeConnection(con);
 			%>
 		</table>
 		Check if you qualify for a discount:
-		<br>
-		<input type="radio" name="discounted" selected="true" value="true"/>Senior (>65)
+		  <br>
+		  <input type="radio" name="discounted" value="true"/>Senior (>65)
 		  <br>
 		  <input type="radio" name="discounted" value="true"/>Child (<12)
 		  <br>
-		  <input type="radio" name="discounted" value="false"/>Adult
+		  <input type="radio" name="discounted"  value="true"/>Disabled
+		  <br>
+		  <input type="radio" name="discounted" selected="true" value="false"/>Adult
 		  <br>
 		  Trip Type:
-		<br>
+		  <br>
 		  <input type="radio" name="tripType" value="round"/>Round Trip
 		  <br>
 		  <input type="radio" name="tripType" value="oneway"/>One Way
 		  <br>
+ 			Date of Return if Round-Trip (YYYY/MM/DD): <input type="text" name="dateOfReturn" placeholder="2020-12-12"/>
+ 		  <br>
+ 		  <input type="hidden" name="originStation" value="<%= origin %>">
+		  <input type="hidden" name="destinationStation" value="<%= destination %>">
+		  <input type="hidden" name="dateOfTravel" value="<%= date %>">
 		  			<input type="submit" value="Make a reservation">
 		</form>
 		<form action="custPage.jsp">
