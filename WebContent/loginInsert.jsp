@@ -53,8 +53,7 @@
 		con.close();
 		out.print("New User Successfully Created");
 	}catch (Exception e){
-		out.print(e);
-		out.print("New User Could Not Be Created");
+		out.print("New User Could Not Be Created. Username is already taken.");
 	}%>
 </body>
 </html>
