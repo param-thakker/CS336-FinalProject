@@ -24,19 +24,19 @@
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
 			if(Attribute.equals("StationID")){
 				String str = "UPDATE EmployeeWorksAt SET "+Attribute+"="+NewValue+" WHERE SSN='"+SSN+"'";
-				out.print("Success, Click Back to Return");
+				
 				stmt.executeUpdate(str);
 			}
 			else{
 				String str = "UPDATE EmployeeWorksAt SET "+Attribute+"='"+NewValue+"' WHERE SSN='"+SSN+"'";
-				out.print("Success, Click Back to Return");
+			
 				stmt.executeUpdate(str);				
 			}
 		%>
 			
 		<!--  Make an HTML table to show the results in: -->
 		<br>
-		New Value:
+		Enter New Value for this Attribute:
 		<form method="get" action="editCustomerRep.jsp">
 		<% 
 			if(Attribute.equals("Password"))
@@ -48,7 +48,11 @@
 		<input type="hidden" name="SSN" value="<%= SSN %>">
 		<input type="submit" value="Submit">
 		</form>
-		<button type="button" name="back" onclick="history.back()"> Back </button>
+<form action="adminPage.jsp">
+		<input type="submit" value="Back">
+		</form>
+	
+
 		<%} catch (Exception e) {
 			out.print(e);
 		}%>

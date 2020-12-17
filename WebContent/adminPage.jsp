@@ -82,24 +82,13 @@
 				out.print(result.getString("LastName"));
 				out.print("</td>");
 				
-				out.print("<td>");
-				
-	%>			<form method="get" action="getBestCustomer.jsp">
-				 <input type="submit" name="bestCustomer" value="Edit" />
-				 </form>
-				<% out.print("</td>");
-				out.print("<td>");
-				%>
-				<form method="get" action="getBestCustomer.jsp">
-				 <input type="submit" name="bestCustomer" value="Delete" />
-				 </form>
-				<% 	out.print("</td>");
+		
 				out.print("</tr>");
 			}
 			out.print("</table>");
 			%>
 			<br>
-			Edit A Customer Representative
+			<b>Edit A Customer Representative</b>
 			<br>
 			Enter the SSN of the Representative and Select a Attribute
 			<br>
@@ -117,7 +106,7 @@
 			<% 
 			%>
 			<br>
-			Add a Customer Rep
+			<b>Add a Customer Rep</b>
 			<br>
 			Enter the info of the Representative
 			<br>

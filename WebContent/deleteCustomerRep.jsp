@@ -44,7 +44,9 @@
 	
 	<br>
 	
-	<button type="button" name="back" onclick="history.back()"> Back </button>
+	<form action="adminPage.jsp">
+		<input type="submit" value="Back">
+		</form>
 	
 
 	</body>
