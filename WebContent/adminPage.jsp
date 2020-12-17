@@ -132,7 +132,7 @@
 			<br>
 			<form method="post" action="deleteCustomerRep.jsp">
 			<input type="text" name="SSN" placeholder="123456789"/>
-			 <input type="submit" name="deleteRep" value="Delete" />
+			 <input type="submit" name="deleteRep" value="Delete Customer Rep" />
 			 </form>
 			<%
 			//close the connection.
