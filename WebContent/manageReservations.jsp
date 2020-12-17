@@ -22,7 +22,6 @@
 			Date cur = new java.util.Date();
 			String current = cur.toString().substring(24,28)+"-"+ (cur.getMonth()+1) + "-" + (cur.getDate());
 			String loggedInUser = (String) session.getAttribute("user");
-			loggedInUser="Username";
 			String str = "SELECT * FROM ResPassTransLine WHERE Username = '"+loggedInUser+"'";
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);

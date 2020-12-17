@@ -27,7 +27,6 @@
 			String returnDate = request.getParameter("dateOfReturn");
 			String loggedInUser = (String) session.getAttribute("user");
 			String completed = request.getParameter("secondTime");
-			loggedInUser="Username";
 			String round;
 			if(tripType.equals("round"))
 				round = request.getParameter("selectedReturnTrip");
