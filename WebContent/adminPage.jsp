@@ -18,9 +18,7 @@
 
 	<%
 		List<String> list = new ArrayList<String>();
-
 		try {
-
 			//Get the database connection
 			ApplicationDB db = new ApplicationDB();	
 			Connection con = db.getConnection();	
@@ -35,10 +33,8 @@
 			
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
-
 			//Make an HTML table to show the results in:
 			out.print("<table border=2>");
-
 			//make a row
 			out.print("<tr>");
 			//make a column
@@ -64,7 +60,6 @@
 			out.print("Delete");
 			out.print("</td>");*/
 			out.print("</tr>");
-
 			//parse out the results
 			while (result.next()) {
 				//make a row
@@ -99,24 +94,30 @@
 				 <input type="submit" name="bestCustomer" value="Delete" />
 				 </form>
 				<% 	out.print("</td>");
-
 				out.print("</tr>");
-
 			}
 			out.print("</table>");
 			%>
 			<br>
-			<form method="post" action="addCustomerRep.jsp">
+			Edit A Customer Representative
+			<br>
+			Enter the SSN of the Representative and Select a Attribute
+			<br>
+			<form method="get" action="editCustomerRep.jsp">
+			<input type="text" name="SSN" placeholder="123456789"/>
+				<select name="Attribute" placeholder="Username"> 
+					<option name="FirstName" value="FirstName">First Name</option>
+  					<option name="LastName" value="LastName">Last Name</option>
+					<option name="Username" value="Username">Username</option>
+					<option name="Password" value="Password">Password</option>
+					<option name="StationID" value="StationID">StationID</option>
+				</select>
 				 <input type="submit" name="addRep" value="Add Customer Rep" />
-				 </form>
+			</form>
 			<% 
-
-
-
 			//close the connection.
 			db.closeConnection(con);
 			con.close();
-
 		} catch (Exception e) {
 		}
 	%>
