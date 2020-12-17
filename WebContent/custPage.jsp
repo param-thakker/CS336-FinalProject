@@ -20,6 +20,7 @@
 
 	
 RESERVATIONS
+<br>
 Make a New Reservation and View Train Schedules
 <br>
 <br>
@@ -65,6 +66,9 @@ QUESTIONS/FEEDBACK
   <input type="submit" value="Submit" />
 </form>
 <br>
+<form action="logout.jsp" method="GET">
+    	<button>logout</button>
+	</form>
 
 </body>
 </html>

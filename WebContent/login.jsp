@@ -21,6 +21,14 @@
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
     <form class="login-form" method="get" action="accessLogin.jsp">
+    	<label for="cars">Account Type:</label>
+	
+		<select name="accountType" id="cars" required>
+		  <option value="Customer">Customer</option>
+		  <option value="Accounts">Admin</option>
+		  <option value="EmployeeWorksAt">Customer Representative</option>
+		</select>
+		<br>
       <input type="text" placeholder="Username" name="username"/>
       <input type="password" placeholder="Password" name="password"/>
       <button>login</button>

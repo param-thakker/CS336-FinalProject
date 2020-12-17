@@ -24,6 +24,7 @@
 			//Get the combobox from the index.jsp
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
+			String accountType = request.getParameter("accountType");
 			String loggedInUser = (String) session.getAttribute("user");
 			if (loggedInUser != null) {
 				out.print("You are logged in!");
@@ -32,16 +33,14 @@
 			} else {
 				//Make a SELECT query from the sells table with the price range specified by the 'price' parameter at the index.jsp
 				//String str = "SELECT * FROM Accounts WHERE username = " + username + " and password ";
-				String str = "SELECT * FROM Accounts WHERE Username='" + username + "' AND Password='" + password + "'";
+				String str = "SELECT * FROM " + accountType + " WHERE Username='" + username + "' AND Password='" + password + "'";
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(str);
 				if (result.next()) {
-					String isIn = result.getString("Usertype");
 					session.setAttribute("user", username);
-				
-					if (isIn.equals("admin"))
+					if (accountType.equals("Accounts"))
 						response.sendRedirect(request.getContextPath() + "/adminPage.jsp");
-					else if (isIn.equals("rep"))
+					else if (accountType.equals("EmployeeWorksAt"))
 						response.sendRedirect(request.getContextPath() + "/repPage.jsp");
 					else
 						response.sendRedirect(request.getContextPath() + "/custPage.jsp");
