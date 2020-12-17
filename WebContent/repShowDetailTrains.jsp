@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>More details about Trainline</title>
 </head>
 <body>
 	<%
@@ -47,9 +47,9 @@
 			out.print("nameStop");
 			out.print("</td>");
 			//make a column
-			out.print("<td>");
+			/*out.print("<td>");
 			out.print("Fare");
-			out.print("</td>");
+			out.print("</td>");*/
 			//make a column
 			out.print("<td>");
 			out.print("ArrivalTime");
@@ -75,10 +75,9 @@
 				//Print out current bar name:
 				out.print(result.getString("name"));
 				out.print("</td>");
-				out.print("<td>");
-				//Print out current beer name:
+				/*out.print("<td>");
 				out.print(result.getFloat("fare"));
-				out.print("</td>");
+				out.print("</td>");*/
 				
 				out.print("<td>");
 				out.print(result.getTimestamp("arr"));

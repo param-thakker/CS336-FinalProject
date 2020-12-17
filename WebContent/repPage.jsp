@@ -5,14 +5,17 @@
     
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<head>
+	<h2 style="text-align:center">Rep's Page</h2>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Rep Home</title>
 </head>
+
+<body style="background-color:powderblue;">
+
 <body>
 	<%
 		session.setAttribute("user", true);
-		out.print("THIS IS THE REP PAGE");
 	%>
 	<%
 		List<String> list = new ArrayList<String>();
@@ -42,18 +45,18 @@
 			//make a column
 			out.print("<td>");
 			//print out column header
-			out.print("bar");
+			out.print("StationID");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("beer");
+			out.print("StationName");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("price");
+			out.print("State");
 			out.print("</td>");
 			out.print("<td>");
-			out.print("city");
+			out.print("City");
 			out.print("</td>");
 			out.print("</tr>");
 
@@ -125,7 +128,7 @@
 	  <br>
 		TransitLine: <input type="text" name="TL">
 	  <br>
-		Date: <input type="text" name="date">		
+		Date: <input type="text" name="date"> (yyyy-mm-dd)		
 		<br>		
 	<input type="submit" value="Commit">
 	</form>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Trainline Details</title>
 </head>
 <body>
 	<%
@@ -126,7 +126,7 @@
 		    <!-- when the radio for bars is chosen, then 'command' will have value 
 		     | 'bars', in the show.jsp file, when you access request.parameters -->
 		  <br>
-		  			  <input type="radio" name="command" value="addStops"/>Show Stops for (only TrainLine parameter is needed)
+		  	<input type="radio" name="command" value="addStops"/>Show Additional Stops for (only TrainLine parameter is needed)
 			  <br>
 	<table>
 	<tr>

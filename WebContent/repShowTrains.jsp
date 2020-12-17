@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Insert title here</title>
+		<title>Train Details</title>
 	</head>
 	<body>
 		<% try {
@@ -89,7 +89,7 @@
 	
 	<form method="post" action="repShowDetailTrains.jsp">
 	<br>
-		More details on TrainLine: <input type="text" name="trainline">
+		Other Stops on TrainLine: <input type="text" name="trainline">
 		<br>
 	<input type="submit" value="Commit">
 	</form>

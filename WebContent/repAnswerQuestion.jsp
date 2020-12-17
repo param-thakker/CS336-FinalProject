@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Answered Question</title>
 </head>
 <body>
 	<%
@@ -38,11 +38,11 @@
 		
 		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.
 		con.close();
-		out.print("answer returned");
+		out.print("Answer returned");
 		
 	} catch (Exception ex) {
 		out.print(ex);
-		out.print("answer failed");
+		out.print("Answer failed");
 	}
 %>
 
