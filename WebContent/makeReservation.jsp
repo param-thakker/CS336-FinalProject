@@ -28,6 +28,8 @@
 			String loggedInUser = (String) session.getAttribute("user");
 			String completed = request.getParameter("secondTime");
 			String round;
+			java.util.Date cur = new java.util.Date();
+			String current = cur.toString().substring(24,28)+"-"+ (cur.getMonth()+1) + "-" + (cur.getDate());
 			if(tripType.equals("round"))
 				round = request.getParameter("selectedReturnTrip");
 			else
@@ -46,21 +48,21 @@
 			if(tripType.equals("round")){
 				if(completed.equals("true")){
 					if(discounted.equals("true"))
-						str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+date+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"')+(SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"
+						str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+current+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"')+(SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"
 							+round+"')-2, '" +loggedInUser+"', '"+selectedTrip+"', '"+round+"', '"+origin+"', '"
 							+destination+"', '"+date+"', '"+returnDate+"');";
 					else
-						str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+date+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"')+(SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"
+						str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+current+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"')+(SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"
 							+round+"'), '" +loggedInUser+"', '"+selectedTrip+"', '"+round+"', '"+origin+"', '"
 							+destination+"', '"+date+"', '"+returnDate+"');";					
 					stmt.executeUpdate(str);
 				}
 			} else {
 				if(discounted.equals("true"))
-					str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+date+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"')-2, '" +loggedInUser+"', '"+selectedTrip+"', null, '"+origin+"', '"
+					str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+current+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"')-2, '" +loggedInUser+"', '"+selectedTrip+"', null, '"+origin+"', '"
 						+destination+"', '"+date+"', null);";
 				else
-					str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+date+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"'), '" +loggedInUser+"', '"+selectedTrip+"', null, '"+origin+"', '"
+					str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+current+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"'), '" +loggedInUser+"', '"+selectedTrip+"', null, '"+origin+"', '"
 						+destination+"', '"+date+"', null);";
 				stmt.executeUpdate(str);
 			}

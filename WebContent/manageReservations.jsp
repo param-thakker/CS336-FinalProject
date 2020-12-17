@@ -47,7 +47,7 @@
 			<%
 			//parse out the results
 			while (result.next()) {%>
-				<% if(result.getString("DepartureTime").substring(0,10).compareTo(current)>0) {%>
+				<% if(result.getString("DepartureTime").substring(0,10).compareTo(current)>=0) {%>
 				<tr>    
 				<td><input type="radio" name="tripToDelete" value="<%= result.getString("Reservation_Number") %>"/></td>
 					<td><%= result.getString("Reservation_Number") %></td>
