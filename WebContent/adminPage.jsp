@@ -82,28 +82,18 @@
 				out.print(result.getString("LastName"));
 				out.print("</td>");
 				
-				out.print("<td>");
+	
 				
-	%>			<form method="get" action="getBestCustomer.jsp">
-				 <input type="submit" name="bestCustomer" value="Edit" />
-				 </form>
-				<% out.print("</td>");
-				out.print("<td>");
-				%>
-				<form method="get" action="getBestCustomer.jsp">
-				 <input type="submit" name="bestCustomer" value="Delete" />
-				 </form>
-				<% 	out.print("</td>");
 				out.print("</tr>");
 			}
 			out.print("</table>");
 			%>
 			<br>
-			Edit A Customer Representative
+			<b>Edit A Customer Representative</b>
 			<br>
-			Enter the SSN of the Representative and Select a Attribute
+			Enter the SSN of the Representative and Select an attribute which you want to edit
 			<br>
-			<form method="get" action="editCustomerRep.jsp">
+			<form method="post" action="editCustomerRep.jsp">
 			<input type="text" name="SSN" placeholder="123456789"/>
 				<select name="Attribute" placeholder="Username"> 
 					<option name="FirstName" value="FirstName">First Name</option>
@@ -112,8 +102,18 @@
 					<option name="Password" value="Password">Password</option>
 					<option name="StationID" value="StationID">StationID</option>
 				</select>
-				 <input type="submit" name="addRep" value="Add Customer Rep" />
+				 <input type="submit" name="editRep" value="Edit" />
 			</form>
+			<br>
+			<b>Delete A Customer Representative</b>
+			<br>
+			Enter the SSN of the Representative to be removed from the Database
+			<br>
+			<form method="post" action="deleteCustomerRep.jsp">
+			<input type="text" name="SSN" placeholder="123456789"/>
+			 <input type="submit" name="deleteRep" value="Delete" />
+			 </form>
+			
 			<% 
 			//close the connection.
 			db.closeConnection(con);
