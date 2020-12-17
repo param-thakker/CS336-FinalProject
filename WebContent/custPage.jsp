@@ -20,6 +20,7 @@
 
 	
 RESERVATIONS
+<br>
 Make a New Reservation and View Train Schedules
 <br>
 <br>

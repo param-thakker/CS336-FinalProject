@@ -28,6 +28,7 @@
 		  <option value="Accounts">Admin</option>
 		  <option value="EmployeeWorksAt">Customer Representative</option>
 		</select>
+		<br>
       <input type="text" placeholder="Username" name="username"/>
       <input type="password" placeholder="Password" name="password"/>
       <button>login</button>
