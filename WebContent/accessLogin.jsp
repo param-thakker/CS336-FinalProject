@@ -37,12 +37,10 @@
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(str);
 				if (result.next()) {
-					String isIn = result.getString("Usertype");
 					session.setAttribute("user", username);
-				
-					if (isIn.equals("admin"))
+					if (accountType.equals("Accounts"))
 						response.sendRedirect(request.getContextPath() + "/adminPage.jsp");
-					else if (isIn.equals("rep"))
+					else if (accountType.equals("EmployeeWorksAt"))
 						response.sendRedirect(request.getContextPath() + "/repPage.jsp");
 					else
 						response.sendRedirect(request.getContextPath() + "/custPage.jsp");
