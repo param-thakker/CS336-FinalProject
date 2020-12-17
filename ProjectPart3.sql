@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS EmployeeWorksAt(
                 Username varchar(20),
                 Password varchar(20),
                 primary key(SSN),
-                foreign key(StationID) references Station(StationID) on update cascade on delete cascade
+                foreign key(StationID) references Station(StationID) on update cascade
 );
 CREATE TABLE IF NOT EXISTS TransitLine(
 				Transit_Line_Name varchar(20) primary key,
@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS TransitLine(
                 TravelTime int,
                 OriginStationID int,
                 DestinationStationID int,
-                foreign key(OriginStationID) references Station (StationID) on update cascade on delete cascade,
-				foreign key(DestinationStationID) references Station(StationID) on update cascade on delete cascade
+                foreign key(OriginStationID) references Station (StationID) on update cascade,
+				foreign key(DestinationStationID) references Station(StationID) on update cascade
 );
 CREATE TABLE IF NOT EXISTS hasStop(
 				Transit_Line_Name varchar(20),
@@ -38,13 +38,13 @@ CREATE TABLE IF NOT EXISTS hasStop(
                 Departure datetime,
                 Arrival datetime,
                 primary key (Transit_Line_Name, StationID),
-				foreign key (Transit_Line_Name) references TransitLine(Transit_Line_Name) on update cascade on delete cascade,
-                foreign key (StationID) references Station(StationID) on update cascade on delete cascade
+				foreign key (Transit_Line_Name) references TransitLine(Transit_Line_Name) on update cascade,
+                foreign key (StationID) references Station(StationID) on update cascade
 );
 CREATE TABLE IF NOT EXISTS TrainPartOf(
 				TrainID int primary key,
 				Transit_Line_Name varchar(20),
-                foreign key (Transit_Line_Name) references TransitLine(Transit_Line_Name) on update cascade on delete cascade
+                foreign key (Transit_Line_Name) references TransitLine(Transit_Line_Name) on update cascade
 );
 CREATE TABLE IF NOT EXISTS Customer(
 				Email varchar(50),
@@ -74,9 +74,9 @@ CREATE TABLE IF NOT EXISTS ResPassTransLine(
                 DepartureTime datetime,
                 ReturnTime datetime,
                 primary key(Reservation_Number),	
-                foreign key (Transit_Line_Name) references TransitLine(Transit_Line_Name) on update cascade on delete cascade,
-                foreign key (ReturnTransitLine) references TransitLine(Transit_Line_Name) on update cascade on delete cascade,
-                foreign key (Username) references Customer(Username) on update cascade on delete cascade
+                foreign key (Transit_Line_Name) references TransitLine(Transit_Line_Name) on update cascade,
+                foreign key (ReturnTransitLine) references TransitLine(Transit_Line_Name) on update cascade,
+                foreign key (Username) references Customer(Username) on update cascade
 );
                 
 CREATE TABLE IF NOT EXISTS Questions(
