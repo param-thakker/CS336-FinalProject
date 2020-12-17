@@ -10,6 +10,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Manage Reservations</title>
 	</head>
+	<body style="background-color:powderblue;">
 		<% try {
 	
 			//Get the database connection
@@ -20,15 +21,15 @@
 			//Get the selected radio button from the index.jsp
 			String ResNumber = request.getParameter("tripToDelete");
 			//Make a DELETE query from the table specified by the 'command' parameter at the index.jsp
-			String str = "DELETE FROM ResPassTransLine WHERE Reservation_Number = "+ResNumber;
+			String str = "DELETE FROM ResPassTransLine WHERE Reservation_Number = '"+ResNumber+"'";
 			//Run the update against the database.
 			stmt.executeUpdate(str);
 			//close the connection.
 			db.closeConnection(con);
 			%>
 			Success!
-		<form action="manageReservations.jsp">
-         <button type="submit">Back</button>
+		<form action="custPage.jsp">
+         <button type="submit">Home</button>
       	</form>
 			
 		<%} catch (Exception e) {

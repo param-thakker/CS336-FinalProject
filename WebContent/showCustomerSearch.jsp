@@ -9,6 +9,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Insert title here</title>
 	</head>
+	<body style="background-color:powderblue;">
 		<% try {
 	
 			//Get the database connection
@@ -95,10 +96,11 @@
  		  <input type="hidden" name="originStation" value="<%= origin %>">
 		  <input type="hidden" name="destinationStation" value="<%= destination %>">
 		  <input type="hidden" name="dateOfTravel" value="<%= date %>">
+		  <input type="hidden" name="secondTime" value="<%= "false" %>">
 		  			<input type="submit" value="Make a reservation">
 		</form>
 		<form action="custPage.jsp">
-         <button type="submit">Back</button>
+         <button type="submit">Home</button>
       	</form>	
 			
 		<%} catch (Exception e) {

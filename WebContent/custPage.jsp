@@ -15,12 +15,12 @@
 <br>
 
 
-SALES REPORT
 <br>
 <br>
 
 	
 RESERVATIONS
+Make a New Reservation and View Train Schedules
 <br>
 <br>
 <form method="get" action="showCustomerSearch.jsp">
@@ -32,6 +32,14 @@ RESERVATIONS
   Date of Travel (YYYY/MM/DD): <input type="text" name="dateOfTravel" placeholder="2020-12-10"/> 
   <br>
   <input type="submit" value="Search" />
+</form>
+<br>
+
+View Current and Past Reservations:
+<br>
+<br>
+<form method="get" action="manageReservations.jsp">
+	<button type="submit">Manage</button>
 </form>
 <br>
 

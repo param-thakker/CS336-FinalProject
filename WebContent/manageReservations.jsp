@@ -10,6 +10,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Manage Reservations</title>
 	</head>
+	<body style="background-color:powderblue;">
 		<% try {
 	
 			//Get the database connection
@@ -30,7 +31,7 @@
 		%>
 		
 		Select a reservation to delete(Current Reservations): 
-		<form method="get" action="makeReservation.jsp">
+		<form method="get" action="deleteReservation.jsp">
 		<table>
 		<tr>    
 			<td>Select</td>
@@ -102,8 +103,8 @@
 			db.closeConnection(con);
 			%>
 		</table>
-		<form action="showCustomerSearch.jsp">
-         <button type="submit">Back</button>
+		<form action="custPage.jsp">
+         <button type="submit">Home</button>
       	</form>	
 		<%} catch (Exception e) {
 			out.print(e);

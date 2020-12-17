@@ -9,6 +9,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Inserting Reservation</title>
 	</head>
+	<body style="background-color:powderblue;">
 		<% try {
 	
 			//Get the database connection
@@ -25,12 +26,13 @@
 			String date = request.getParameter("dateOfTravel");
 			String returnDate = request.getParameter("dateOfReturn");
 			String loggedInUser = (String) session.getAttribute("user");
+			String completed = request.getParameter("secondTime");
 			loggedInUser="Username";
 			String round;
 			if(tripType.equals("round"))
 				round = request.getParameter("selectedReturnTrip");
 			else
-				round = "placeholder";
+				round = "null";
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
 			ResultSet result;
 			String str1;
@@ -42,16 +44,18 @@
 			//Run the query against the database.
 			String resID = java.util.UUID.randomUUID().toString();
 			String str;
-			if(!round.equals("placeholder")){				
-				if(discounted.equals("true"))
-					str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+date+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"')+(SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"
-						+round+"')-2, '" +loggedInUser+"', '"+selectedTrip+"', '"+round+"', '"+origin+"', '"
-						+destination+"', '"+date+"', '"+returnDate+"');";
-				else
-					str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+date+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"')+(SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"
-						+round+"'), '" +loggedInUser+"', '"+selectedTrip+"', '"+round+"', '"+origin+"', '"
-						+destination+"', '"+date+"', '"+returnDate+"');";
-				stmt.executeUpdate(str);
+			if(tripType.equals("round")){
+				if(completed.equals("true")){
+					if(discounted.equals("true"))
+						str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+date+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"')+(SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"
+							+round+"')-2, '" +loggedInUser+"', '"+selectedTrip+"', '"+round+"', '"+origin+"', '"
+							+destination+"', '"+date+"', '"+returnDate+"');";
+					else
+						str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+date+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"')+(SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"
+							+round+"'), '" +loggedInUser+"', '"+selectedTrip+"', '"+round+"', '"+origin+"', '"
+							+destination+"', '"+date+"', '"+returnDate+"');";					
+					stmt.executeUpdate(str);
+				}
 			} else {
 				if(discounted.equals("true"))
 					str = "REPLACE INTO ResPassTransLine VALUES ('"+resID+"', '"+date+"', (SELECT Fare FROM TransitLine WHERE Transit_Line_Name = '"+selectedTrip+"')-2, '" +loggedInUser+"', '"+selectedTrip+"', null, '"+origin+"', '"
@@ -61,6 +65,7 @@
 						+destination+"', '"+date+"', null);";
 				stmt.executeUpdate(str);
 			}
+			
 		%>
 			
 		<!--  Make an HTML table to show the results in: -->
@@ -78,7 +83,7 @@
 		</tr>
 			<%
 			//parse out the results
-			if(tripType.equals("round")){
+			if(tripType.equals("round")&&completed.equals("false")){
 				while (result.next()) { %>
 				<tr>    
 				<td><input type="radio" name="selectedReturnTrip" value="<%= result.getString("Transit_Line_Name") %>"/></td>
@@ -93,11 +98,20 @@
 			db.closeConnection(con);
 			%>
 		</table>
+		 <input type="hidden" name="selectedTrip" value="<%= selectedTrip %>">
+		  <input type="hidden" name="discounted" value="<%= discounted %>">
+		  <input type="hidden" name="tripType" value="<%= tripType %>">
+		  <input type="hidden" name="originStation" value="<%= origin %>">
+		  <input type="hidden" name="destinationStation" value="<%= destination %>">
+		  <input type="hidden" name="dateOfTravel" value="<%= date %>">
+		  <input type="hidden" name="dateOfReturn" value="<%= returnDate %>">
+		  <input type="hidden" name="selectedReturnTrip" value="<%= round %>">
+		  <input type="hidden" name="secondTime" value="<%= "true" %>">
 		<input type="submit" value="Make a reservation">
 		</form>	
 		
-		<form action="showCustomerSearch.jsp">
-         <button type="submit">Back</button>
+		<form action="custPage.jsp">
+         <button type="submit">Home</button>
       	</form>
 		<%} catch (Exception e) {
 			out.print(e);

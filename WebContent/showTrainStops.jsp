@@ -9,6 +9,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Train stops</title>
 	</head>
+	<body style="background-color:powderblue;">
 		<% try {
 	
 			//Get the database connection
@@ -51,7 +52,7 @@
 			%>
 		</table>
 		<form action="custPage.jsp">
-         <button type="submit">Back</button>
+         <button type="submit">Home</button>
       	</form>	
 
 		<%} catch (Exception e) {
