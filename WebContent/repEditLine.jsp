@@ -29,7 +29,11 @@
 
 		//Make an insert statement for the Sells table:
 		String editTrainSchedule="";
-			if (entity.equals("update")){
+
+			if (entity==null){
+				response.sendRedirect(request.getContextPath() + "/repShowTrainLine.jsp");
+			}
+			else if (entity.equals("update")){
 				editTrainSchedule = "UPDATE TransitLine SET " + param + " = ? WHERE Transit_Line_Name = ?";
 				PreparedStatement ps = con.prepareStatement(editTrainSchedule);
 				if (param.equals("OriginStationID")|| param.equals("DestinationStationID")){
@@ -50,8 +54,8 @@
 					float fare = Float.parseFloat(value);
 					ps.setFloat(1, fare);
 					
+					/*
 					String getCount = "SELECT count(*) FROM hasStop WHERE Transit_Line_Name = '" + trainLine + "'";
-					
 					ResultSet countSet = stmt.executeQuery(getCount);
 
 					countSet.next();
@@ -65,7 +69,7 @@
 						fareS.setString(2, trainLine);
 	
 						fareS.executeUpdate();
-					}
+					}*/
 
 				}
 
@@ -105,7 +109,9 @@
 	}
 %>
 
-	<button type="button" name="back" onclick="window.location.reload(history.back())">Return to Train Schedules</button>
+	<form action="repShowTrainLine.jsp" method="GET">
+    	<button>Back</button>
+	</form>
 
 </body>
 </html>

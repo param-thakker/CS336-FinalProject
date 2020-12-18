@@ -46,7 +46,7 @@
 	}
 %>
 
-	<button type="button" name="back" onclick="window.location.reload(history.back())">Return to Question List</button>
+	<button type="button" name="back" onclick="window.location = document.referrer"> Back to Queston List</button>
 
 
 

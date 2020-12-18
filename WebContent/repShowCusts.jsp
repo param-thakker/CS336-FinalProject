@@ -80,7 +80,9 @@
 		<%} catch (Exception e) {
 			out.print(e);
 		}%>
-		<button type="button" name="back" onclick="history.back()"> Back </button>
+	<form action="repPage.jsp" method="GET">
+    	<button>Back</button>
+	</form>
 	
 
 	</body>

@@ -18,11 +18,22 @@
 
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
+			String entity = request.getParameter("command");
+
 			//Get the selected radio button from the index.jsp
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-			int stationID = Integer.parseInt(request.getParameter("station"));
+			int stationID =0;
+			if (session.getAttribute("stationID")==null){
+				stationID = Integer.parseInt(request.getParameter("station"));
+				session.setAttribute("stationID", stationID);
+				session.setAttribute("orOrDest", entity);
+			} else {
+				stationID = (Integer)session.getAttribute("stationID");
+				entity = (String)session.getAttribute("orOrDest");
+
+			}
+
 			
-			String entity = request.getParameter("command");
 			String str="";
 			if (entity.equals("origin")){
 				str = "SELECT t.Transit_Line_Name transitline, t.DepartureTime dep, t.ArrivalTime arr"
@@ -95,7 +106,9 @@
 	</form>
 	<br>
 	
-	<button type="button" name="back" onclick="history.back()"> Back </button>
+	<form action="repPage.jsp" method="GET">
+    	<button>Back</button>
+	</form>
 	
 
 	</body>

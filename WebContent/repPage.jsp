@@ -19,6 +19,11 @@
 	%>
 	<%
 		List<String> list = new ArrayList<String>();
+		if (session.getAttribute("stationID")!=null)
+			session.removeAttribute("stationID");
+		if (session.getAttribute("orOrDest")!=null)
+			session.removeAttribute("orOrDest");
+
 
 		try {
 

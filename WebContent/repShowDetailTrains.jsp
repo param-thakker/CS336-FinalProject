@@ -26,6 +26,8 @@
 			Statement stmt = con.createStatement();
 			//Get the combobox from the index.jsp
 			String trainLine = request.getParameter("trainline");
+			session.setAttribute("trainline", trainLine);
+
 			//Make a SELECT query from the sells table with the price range specified by the 'price' parameter at the index.jsp
 
 			String getTrainSchedule = "SELECT s.StationID id, s.StationName name, h.Fare fare, h.Arrival arr, h.Departure dep " +
@@ -102,7 +104,7 @@
 		}
 	%>
 	
-	<button type="button" name="back" onclick="history.back()"> Back </button>
+	<button type="button" name="back" onclick="window.location = document.referrer"> Back </button>
 
 </body>
 </html>

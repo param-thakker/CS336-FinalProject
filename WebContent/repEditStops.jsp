@@ -161,7 +161,7 @@
 	}
 %>
 
-	<button type="button" name="back" onclick="window.location.reload(history.back())">Return to Train Schedule</button>
+	<button type="button" name="back" onclick="window.location = document.referrer">Return to Train Schedule</button>
 
 </body>
 </html>
